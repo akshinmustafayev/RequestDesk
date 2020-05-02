@@ -1,0 +1,6 @@
+<%
+			String asd = "sdf";
+			asd = request.getParameter("lang");
+			pageContext.setAttribute("asd", asd);
+		%>
+		${asd}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <jdbc>
+        <url>jdbc:mysql://localhost:3306/javabase</url>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <username>java</username>
+        <password>d$7hF_r!9Y</password>
+    </jdbc>
+</config>
