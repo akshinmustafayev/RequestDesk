@@ -53,7 +53,7 @@
                 </li>
             </ul>
 		</nav>
-		<div class="card ml-4 mr-4 mt-2">
+		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<span class="align-middle">Home</span>
@@ -76,7 +76,7 @@
 										<h5 class="card-title">${requestType.GetName()}</h5>
 										<h6 class="card-subtitle mb-2 text-muted">${requestType.GetCreatedDate()}</h6>
 										<p class="card-text">${requestType.GetDescription()}</p>
-										<a href="${context}/newrequest?id=${requestType.GetId()}" class="card-link">Create</a>
+										<a href="${context}/newrequest?requestType=${requestType.GetId()}" class="card-link">Create</a>
 									</div>
 								</div>
 								<c:if test = "${requestType.GetNeedApproval() == true}">

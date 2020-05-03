@@ -6,6 +6,11 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<c:set var="RequestCreationEmptyError" value='${requestScope["RequestCreationEmptyError"]}'/>
+<c:set var="RequestCreationError" value='${requestScope["RequestCreationError"]}'/>
+<c:set var="RequestCreationErrorTopic" value='${requestScope["RequestCreationErrorTopic"]}'/>
+<c:set var="RequestCreationErrorPriority" value='${requestScope["RequestCreationErrorPriority"]}'/>
+<c:set var="RequestCreationErrorDescription" value='${requestScope["RequestCreationErrorDescription"]}'/>
 <!doctype html>
 <html>
 	<head>
@@ -54,7 +59,7 @@
                 </li>
             </ul>
 		</nav>
-		<div class="card ml-4 mr-4 mt-2">
+		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<span class="align-middle" style="float:left;">Create new request</span>
@@ -64,25 +69,64 @@
 				<form method="post" action="newrequest">
 					<div class="form-group">
 						<label for="requestInputTopic">Topic</label>
-						<input name="requestTopic" type="text" class="form-control" id="requestInputTopic" aria-describedby="requestTopic" placeholder="Enter topic">
+						<c:choose>
+							<c:when test = "${RequestCreationError == false}">
+								<input name="requestTopic" type="text" class="form-control" id="requestInputTopic" aria-describedby="requestTopic" placeholder="Enter topic">
+							</c:when>
+							<c:otherwise>
+								<input name="requestTopic" type="text" class="form-control" id="requestInputTopic" aria-describedby="requestTopic" placeholder="Enter topic" value="${RequestCreationErrorTopic}">
+							</c:otherwise>
+						</c:choose>
 						<small id="requestTopic" class="form-text text-muted">Enter request topic here</small>
 					</div>
 					<div class="form-group">
 				    	<label for="requestInputPriority">Priority</label>
-					    <select name="requestPriority" class="form-control" id="requestInputPriority">
-					    	<option value="1">High</option>
-					    	<option value="2">Medium</option>
-					    	<option value="3">Low</option>
-					    </select>
+				    	<c:choose>
+							<c:when test = "${RequestCreationError == false}">
+								<select name="requestPriority" class="form-control" id="requestInputPriority">
+									<option value="1">High</option>
+							    	<option value="2">Medium</option>
+							    	<option value="3">Low</option>
+							    </select>
+							</c:when>
+							<c:otherwise>
+								<select name="requestPriority" class="form-control" id="requestInputPriority" value="${RequestCreationErrorPriority}">
+									<option value="1">High</option>
+							    	<option value="2">Medium</option>
+							    	<option value="3">Low</option>
+							    </select>
+							</c:otherwise>
+						</c:choose>
 					    <small id="requestTopic" class="form-text text-muted">Enter request priority here. <small class="font-italic">For example "High" priority</small></small>
 				  	</div>
 					<div class="form-group">
 						<label for="requestDescriptionInput">Description</label>
-						<textarea name="requestDescription" class="form-control" id="requestDescriptionInput" rows="3"></textarea>
+						<c:choose>
+							<c:when test = "${RequestCreationError == false}">
+								<textarea name="requestDescription" class="form-control" id="requestDescriptionInput" rows="3"></textarea>
+							</c:when>
+							<c:otherwise>
+								<textarea name="requestDescription" class="form-control" id="requestDescriptionInput" rows="3">${RequestCreationErrorDescription}</textarea>
+							</c:otherwise>
+						</c:choose>
 						<small id="requestDescription" class="form-text text-muted">Enter full description of the issue</small>
+					</div>
+					<div class="form-group hidden" hidden>
+						<%
+							String requestType = "0";
+							requestType = request.getParameter("requestType");
+							pageContext.setAttribute("requestType", requestType);
+						%>
+						<input name="requestType" type="text" class="form-control hidden" value="${requestType}" hidden>
 					</div>
 					<button name="newrequest_button" type="submit" class="btn btn-primary">Create</button>
 				</form>
+				<c:if test = "${RequestCreationError == true}">
+					<div class="alert alert-danger mt-3" role="alert">Something went wrong!</div>
+				</c:if>
+				<c:if test = "${RequestCreationEmptyError == true}">
+					<div class="alert alert-danger mt-3" role="alert">Enter data to all fields please!</div>
+				</c:if>
 			</div>
 		</div>
 	</body>

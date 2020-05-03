@@ -49,7 +49,7 @@
                 </li>
             </ul>
 		</nav>
-		<div class="card ml-4 mr-4 mt-2">
+		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<span class="align-middle">Profile settings</span>

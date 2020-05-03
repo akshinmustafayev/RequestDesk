@@ -21,6 +21,10 @@
 	<servlet-name>NewRequest</servlet-name>
 	<servlet-class>org.RequestDesk.controller.NewRequestController</servlet-class>
   </servlet>
+  <servlet>
+	<servlet-name>Request</servlet-name>
+	<servlet-class>org.RequestDesk.controller.RequestController</servlet-class>
+  </servlet>
   <servlet-mapping>
 	<servlet-name>Login</servlet-name>
 	<url-pattern>/login</url-pattern>
@@ -36,6 +40,10 @@
   <servlet-mapping>
 	<servlet-name>NewRequest</servlet-name>
 	<url-pattern>/newrequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>Request</servlet-name>
+	<url-pattern>/request</url-pattern>
   </servlet-mapping>
   
 </web-app>
