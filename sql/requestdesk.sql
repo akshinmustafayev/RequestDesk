@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2020 at 08:01 PM
+-- Generation Time: May 03, 2020 at 06:24 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -43,13 +43,27 @@ CREATE TABLE `requests` (
   `id` int(255) NOT NULL,
   `topic` text NOT NULL,
   `description` text NOT NULL,
-  `createddate` date NOT NULL,
+  `createddate` text NOT NULL,
   `author` int(32) NOT NULL,
   `status` int(32) NOT NULL,
   `priority` int(3) NOT NULL,
-  `requestgroup` int(32) NOT NULL,
-  `assigned` int(32) NOT NULL
+  `requestgroup` int(32) NOT NULL DEFAULT 0,
+  `requesttype` int(6) NOT NULL DEFAULT 0,
+  `assigned` int(32) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `topic`, `description`, `createddate`, `author`, `status`, `priority`, `requestgroup`, `requesttype`, `assigned`) VALUES
+(1, 'asdasdasd', '<p>adasd</p><p><u>adsasd</u></p><p><b>asdasdasd</b></p>', '2020-05-03', 1, 0, 1, 0, 0, 0),
+(2, 'asd', '', '2020-05-03 14:08', 1, 0, 1, 0, 0, 0),
+(3, 'asdasd', '<p><u>sdfsdfsdf</u></p>', '2020-05-03 14:16', 1, 0, 2, 0, 0, 0),
+(4, 'adsasfasf', '<p><b>sdfsdgdsg</b></p>', '2020-05-03 14:23', 1, 0, 2, 0, 2, 0),
+(5, 'test', '<p>asdasdasd</p>', '2020-05-03 18:42', 1, 0, 3, 0, 1, 0),
+(6, 'test', '<p>asdasdasd</p>', '2020-05-03 18:43', 1, 0, 1, 0, 1, 0),
+(7, 'new rquest asdasasd', '<p><b>asdasd ad as d<u>as das as d</u></b></p><ol><li><b><u>asdasdasd</u></b></li><li><b><u>asd</u></b></li><li><b><u>asd</u></b></li><li><b><u>sfddssfdfs</u></b></li></ol>', '2020-05-03 20:11', 1, 0, 2, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +124,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-02 21:58', '', 1, '1f8f55721dbfa8243d83df9febff3a964c9c410602c2ebbdecde476172006735', 'en');
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-03 19:25', '', 1, 'f3d94c61ea4903dd6f4fa5ec7e9cf9bd036840046662b7b3988ebe9a641d0332', 'en');
 
 --
 -- Indexes for dumped tables
@@ -170,7 +184,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `requesttypes`
