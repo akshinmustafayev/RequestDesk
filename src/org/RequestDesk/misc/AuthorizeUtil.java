@@ -13,8 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/** Represents Authorization functions
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class AuthorizeUtil 
 {
+	/**
+	Function for User authorization which gets all User information.
+	@param	request	Default HttpServletRequest
+	@param	response	Default HttpServletResponse
+	@return Returns User bean class
+	*/
 	public static User AuthorizeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 		User userBean = new User();
@@ -56,6 +66,12 @@ public class AuthorizeUtil
 		return null;
     }
 	
+	/**
+	Function for checking if User is authorized and if not forward to /login page.
+	This function should be used everywhere.
+	@param	request	Default HttpServletRequest
+	@param	response	Default HttpServletResponse
+	*/
 	public static void AuthorizedRedirect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HttpSession session = request.getSession();
@@ -69,6 +85,12 @@ public class AuthorizeUtil
         }
     }
 	
+	/**
+	Function for checking if User authorized but pointed to /login page, 
+	and if yes, redirect user to /home page.
+	@param	request	Default HttpServletRequest
+	@param	response	Default HttpServletResponse
+	*/
 	public static void AuthorizedRedirectLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HttpSession session = request.getSession();
@@ -82,6 +104,15 @@ public class AuthorizeUtil
         }
     }
 	
+	/**
+	Function for checking if User pointed to .jsp page itself, 
+	and if yes, redirect user to its alias page configured in web.xml.
+	For example "Home.jsp" redirect to "/home".
+	@param	request	Default HttpServletRequest
+	@param	response	Default HttpServletResponse
+	@param	pagename	Full .jsp page name
+	@param	pagedestination	Destination to the alias of the given .jsp page 
+	*/
 	public static void UserLoadedJspRedirect(HttpServletRequest request, HttpServletResponse response, String pagename, String pagedestination) throws ServletException, IOException
     {
 		String url = request.getRequestURL().toString();
@@ -92,6 +123,12 @@ public class AuthorizeUtil
 		}
     }
 	
+	/**
+	Function for fixing UTF-8 for page. 
+	Required to declare at he beginning of the doPost() and doGet() functions,
+	of the Servlet. Without this pages do not show pages in other languages.
+	@param	response	Default HttpServletResponse
+	*/
 	public static void FixUtf8(HttpServletResponse response) throws ServletException, IOException
     {
 		response.setCharacterEncoding("UTF-8");

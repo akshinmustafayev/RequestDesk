@@ -1,5 +1,9 @@
 package org.RequestDesk.beans;
 
+/** Represents Request status
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class Status 
 {
 	private int id;

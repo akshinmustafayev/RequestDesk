@@ -1,5 +1,9 @@
 package org.RequestDesk.beans;
 
+/** Represents Group in which is User located
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class Group 
 {
 	private int id;

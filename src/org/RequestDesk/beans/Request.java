@@ -1,5 +1,9 @@
 package org.RequestDesk.beans;
 
+/** Represents Request
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class Request 
 {
 	private int id;
@@ -10,6 +14,7 @@ public class Request
 	private int status;
 	private int priority;
 	private int requestgroup;
+	private int requesttype;
 	private int assigned;
 	
 	public Request() { }
@@ -76,6 +81,14 @@ public class Request
 	
 	public void SetRequestGroup(Integer requestgroup) {
 		this.requestgroup = requestgroup;
+	}
+
+	public Integer GetRequestType() {
+		return requesttype;
+	}
+	
+	public void SetRequestType(Integer requesttype) {
+		this.requesttype = requesttype;
 	}
 
 	public Integer GetAssigned() {

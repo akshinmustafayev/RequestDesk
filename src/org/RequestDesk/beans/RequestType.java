@@ -1,5 +1,9 @@
 package org.RequestDesk.beans;
 
+/** Represents Request type
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class RequestType 
 {
 	private int id;

@@ -46,10 +46,12 @@ public class NewRequestController extends HttpServlet
     	AuthorizeUtil.FixUtf8(response);
     	
 		if(request.getParameter("newrequest_button") != null && 
-				request.getParameter("requestTopic") !=null && 
-				request.getParameter("requestPriority") !=null && 
-				request.getParameter("requestDescription") != null)
+				request.getParameter("requestType") != "" && 
+				request.getParameter("requestTopic") != "" && 
+				request.getParameter("requestPriority") != "" && 
+				request.getParameter("requestDescription") != "")
 		{
+			Integer requestType = Integer.parseInt(request.getParameter("requestType"));
 			String requesttopic = request.getParameter("requestTopic");
 			Integer requestpriority = Integer.parseInt(request.getParameter("requestPriority"));
 			String requestdescription = request.getParameter("requestDescription");
@@ -62,6 +64,7 @@ public class NewRequestController extends HttpServlet
 			_request.SetAuthor(userBean.GetId());
 			_request.SetStatus(0);
 			_request.SetPriority(requestpriority);
+			_request.SetRequestType(requestType);
 			
 			NewRequestDao newRequestDao = new NewRequestDao();
 			Boolean requestCreated = newRequestDao.CreateNewRequest(_request); 
@@ -73,9 +76,18 @@ public class NewRequestController extends HttpServlet
 		    else
 		    {
 		    	request.setAttribute("RequestCreationError", true); 
+		    	request.setAttribute("RequestCreationErrorTopic", requesttopic); 
+		    	request.setAttribute("RequestCreationErrorPriority", requestpriority); 
+		    	request.setAttribute("RequestCreationErrorDescription", requestdescription); 
 		        RequestDispatcher rd = request.getRequestDispatcher("/NewRequest.jsp"); 
 		        rd.include(request, response);
 		    }
+		}
+		else
+		{
+			request.setAttribute("RequestCreationEmptyError", true); 
+	        RequestDispatcher rd = request.getRequestDispatcher("/NewRequest.jsp"); 
+	        rd.include(request, response);
 		}
     }
 }

@@ -8,8 +8,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+/** Represents functions for Hash
+	@author Akshin A. Mustafayev
+	@version 1.0
+*/
 public class HashUtil 
 {
+	/**
+	Function for calculating random SHA256.
+	@return Returns SHA256 String 
+	*/
 	public static String GetSHA256() 
 	{
 		String text = "";
@@ -39,6 +47,11 @@ public class HashUtil
 		}
 	}
 	
+	/**
+	Function for calculating random SHA256 from the given String.
+	@param	text	Text which should be converted to SHA256
+	@return Returns SHA256 String from the given String
+	*/
 	public static String GetSHA256String(String text) 
 	{
 		try 
@@ -61,9 +74,15 @@ public class HashUtil
 		} 
 	}
 	
-	private static String GenerateRandomString(int length) {
-	    int leftLimit = 97; // letter 'a'
-	    int rightLimit = 122; // letter 'z'
+	/**
+	Function for calculating random String from the given Length.
+	Start letter "a" , End letter is "z"
+	@param	length	Length of the random String
+	@return Returns random String for the given length
+	*/
+	public static String GenerateRandomString(int length) {
+	    int leftLimit = 97;
+	    int rightLimit = 122;
 	    int targetStringLength = length;
 	    Random random = new Random();
 	 

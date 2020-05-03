@@ -1,6 +1,10 @@
 package org.RequestDesk.beans;
 import org.RequestDesk.misc.HashUtil;
 
+/** Represents User
+@author Akshin A. Mustafayev
+@version 1.0
+*/
 public class User 
 {
 	private int id;

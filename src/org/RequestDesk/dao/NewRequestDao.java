@@ -18,13 +18,14 @@ public class NewRequestDao
         	Connection conn = ConnectionUtils.getConnection();
             PreparedStatement pstmt = null;
             
-            pstmt = conn.prepareStatement("insert into requests (topic, description, createddate, author, status, priority) values (?, ?, ?, ?, ?, ?)"); 
+            pstmt = conn.prepareStatement("insert into requests (topic, description, createddate, author, status, priority, requesttype) values (?, ?, ?, ?, ?, ?, ?)"); 
             pstmt.setString(1, _request.GetTopic());
             pstmt.setString(2, _request.GetDescription());
             pstmt.setString(3, _request.GetCreatedDate());
             pstmt.setInt(4, _request.GetAuthor());
             pstmt.setInt(5, _request.GetStatus());
             pstmt.setInt(6, _request.GetPriority());
+            pstmt.setInt(7, _request.GetRequestType());
         	pstmt.executeUpdate();
             pstmt.close();
             conn.close();
