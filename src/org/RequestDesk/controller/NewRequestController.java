@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.RequestDesk.beans.Request;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.dao.NewRequestDao;
+import org.RequestDesk.interfaces.IRequestCreated;
 import org.RequestDesk.misc.AuthorizeUtil;
 import org.RequestDesk.misc.TimeUtil;
 
@@ -55,23 +56,28 @@ public class NewRequestController extends HttpServlet
 			String requesttopic = request.getParameter("requestTopic");
 			Integer requestpriority = Integer.parseInt(request.getParameter("requestPriority"));
 			String requestdescription = request.getParameter("requestDescription");
-			User userBean = AuthorizeUtil.AuthorizeUser(request, response);
+			User user = AuthorizeUtil.AuthorizeUser(request, response);
+			
+			if(user == null)
+			{
+				response.sendRedirect(request.getContextPath() + "/login");
+			}
 			
 			Request _request = new Request();
 			_request.SetTopic(requesttopic);
 			_request.SetDescription(requestdescription);
 			_request.SetCreatedDate(TimeUtil.GetTimeNow());
-			_request.SetAuthor(userBean.GetId());
+			_request.SetAuthor(user.GetId());
 			_request.SetStatus(0);
 			_request.SetPriority(requestpriority);
 			_request.SetRequestType(requestType);
 			
-			NewRequestDao newRequestDao = new NewRequestDao();
-			Boolean requestCreated = newRequestDao.CreateNewRequest(_request); 
+			//Boolean requestCreated = newRequestDao.CreateNewRequest(_request);
+			IRequestCreated requestCreated = new NewRequestDao();
 		    
-		    if(requestCreated.equals(true))
+		    if(requestCreated.CreateNewRequest(_request) == true)
 		    {
-		    	response.sendRedirect(request.getContextPath() + "/home");
+		    	response.sendRedirect(request.getContextPath() + "/request?requestid=" + requestCreated.GetCreatedRequestID());
 		    }
 		    else
 		    {

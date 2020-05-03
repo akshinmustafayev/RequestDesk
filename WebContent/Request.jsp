@@ -56,7 +56,7 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle pr-3 pt-2" style="float:left;">Request id#: </span>
+					<span class="align-middle pr-3" style="float:left;">Request id#: ${request.GetId()}</span>
 					<div class="dropdown ml-3">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -67,15 +67,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-body p-0">
-				<h4 class="card-title">Please help me with my request by solving my issue</h4>
-				<span class="badge badge-secondary mb-3">by Martin Byrde</span>
-				<span class="badge badge-secondary mb-3">on Apr 24, 2020 09:32 PM</span>
+			<div class="card-body">
+				<h4 class="card-title">${request.GetTopic()}</h4>
+				<span class="badge badge-secondary mb-3">by ${user.GetFullName()}</span>
+				<span class="badge badge-secondary mb-3">${request.GetCreatedDate()}</span>
 				<span class="badge badge-secondary mb-3">Status: Open</span>
 				
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#request">Request</a>
+						<a class="nav-link active" data-toggle="tab" href="#description">Description</a>
 					</li>
 					<!--  
 					<li class="nav-item">
@@ -91,20 +91,20 @@
 				</ul>
 
 				<div class="tab-content">
-					<div id="request" class="tab-pane active border-right border-bottom border-left p-3">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<div id="description" class="tab-pane active border-right border-bottom border-left p-3">
+						<p>${request.GetDescription()}</p>
 					</div>
 					<div id="approvers" class="tab-pane fade border-right border-bottom border-left p-3">
 						<h3>Menu 1</h3>
-						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<p></p>
 					</div>
 					<div id="solution" class="tab-pane fade border-right border-bottom border-left p-3">
 						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<p></p>
 					</div>
 					<div id="history" class="tab-pane fade border-right border-bottom border-left p-3">
 						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<p></p>
 					</div>
 				</div>
 				
@@ -112,19 +112,19 @@
 					<tbody>
 						<tr>
 							<td>Status:</td>
-							<td><span class="badge badge-primary">Open</span></td>
+							<td><span class="badge badge-primary"></span></td>
 							<td>Author:</td>
-							<td><span class="badge badge-dark">Martin Byrde</span></td>
+							<td><span class="badge badge-dark">${user.GetFullName()}</span></td>
 						</tr>
 						<tr>
 							<td>Assigned to:</td>
-							<td><span class="badge badge-dark">Technician number 1</span></td>
+							<td><span class="badge badge-dark"></span></td>
 							<td>Group:</td>
-							<td><span class="badge badge-dark">System Admins</span></td>
+							<td><span class="badge badge-dark"></span></td>
 						</tr>
 						<tr>
 							<td>Created date:</td>
-							<td><span class="badge badge-dark">on Apr 24, 2020 09:32 PM</span></td>
+							<td><span class="badge badge-dark">${request.GetCreatedDate()}</span></td>
 							<td></td>
 							<td></td>
 						</tr>

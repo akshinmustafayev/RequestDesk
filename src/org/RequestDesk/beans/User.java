@@ -7,14 +7,14 @@ import org.RequestDesk.misc.HashUtil;
 */
 public class User 
 {
-	private int id;
+	private Integer id;
 	private String login;
 	private String password;
 	private String email;
 	private String fullname;
 	private String lastlogindate;
 	private String passwordsalt;
-	private int userrole;
+	private Integer userrole;
 	private String session;
 	private String language;
 	
@@ -22,6 +22,10 @@ public class User
 	
 	public Integer GetId() {
 		return id;
+	}
+	
+	public void SetId(Integer id) {
+		this.id = id;
 	}
 	
 	public String GetLogin() {

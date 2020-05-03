@@ -2,11 +2,9 @@ package org.RequestDesk.dao;
 
 import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
-import org.RequestDesk.misc.HashUtil;
 import org.RequestDesk.misc.TimeUtil;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 

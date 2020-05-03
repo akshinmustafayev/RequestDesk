@@ -1,5 +1,6 @@
 package org.RequestDesk.misc;
 
+import org.RequestDesk.beans.Request;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
 
@@ -27,7 +28,7 @@ public class AuthorizeUtil
 	*/
 	public static User AuthorizeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-		User userBean = new User();
+		User user;
 		HttpSession session = request.getSession();
 		
 		String sessionLogin = (String) session.getAttribute("login");
@@ -46,15 +47,17 @@ public class AuthorizeUtil
             
             while(rs.next())
             {
-            	userBean.SetLogin((String)rs.getString("login"));
-            	userBean.SetEmail((String)rs.getString("email"));
-                userBean.SetFullName(rs.getString("fullname"));
-                userBean.SetLastLoginDate(rs.getString("lastlogindate"));
-                userBean.SetLanguage(rs.getString("language"));
-                userBean.SetSession(rs.getString("session"));
-                userBean.SetLanguage(rs.getString("language"));
-                userBean.SetUserRole(rs.getInt("userrole"));
-                return userBean;
+            	user = new User();
+            	user.SetId(rs.getInt("id"));
+            	user.SetLogin((String)rs.getString("login"));
+            	user.SetEmail((String)rs.getString("email"));
+            	user.SetFullName(rs.getString("fullname"));
+            	user.SetLastLoginDate(rs.getString("lastlogindate"));
+            	user.SetLanguage(rs.getString("language"));
+            	user.SetSession(rs.getString("session"));
+            	user.SetLanguage(rs.getString("language"));
+            	user.SetUserRole(rs.getInt("userrole"));
+                return user;
             }
             
         }
@@ -129,8 +132,51 @@ public class AuthorizeUtil
 	of the Servlet. Without this pages do not show pages in other languages.
 	@param	response	Default HttpServletResponse
 	*/
-	public static void FixUtf8(HttpServletResponse response) throws ServletException, IOException
+	public static void FixUtf8(HttpServletResponse response)
     {
 		response.setCharacterEncoding("UTF-8");
+    }
+	
+	/**
+	Get All User Info by ID. 
+	@param	userid	User id number
+	*/
+	public static User GetUserById(Integer userid)
+    {
+		User user = null;
+		
+		try
+        {
+        	Connection conn = ConnectionUtils.getConnection();
+            PreparedStatement pstmt = null;
+            
+            pstmt = conn.prepareStatement("select * from users where id=?"); 
+            pstmt.setInt(1, userid);
+
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next())
+            {
+            	user = new User();
+            	user.SetId(rs.getInt("id"));
+            	user.SetLogin((String)rs.getString("login"));
+            	user.SetEmail((String)rs.getString("email"));
+            	user.SetFullName(rs.getString("fullname"));
+            	user.SetLastLoginDate(rs.getString("lastlogindate"));
+            	user.SetLanguage(rs.getString("language"));
+            	user.SetSession(rs.getString("session"));
+            	user.SetLanguage(rs.getString("language"));
+            	user.SetUserRole(rs.getInt("userrole"));
+            } 
+            
+            pstmt.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+		
+		return user;
     }
 }
