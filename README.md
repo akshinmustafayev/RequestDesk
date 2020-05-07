@@ -19,5 +19,6 @@ Tasks which should be done:
 - [ ]     - Request closure templates
 - [ ] Create Report page
 - [ ] Rethink user acesses
+- [ ] Refactor code, fix bugs
 
 
