@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.RequestDesk.beans.Group;
 import org.RequestDesk.beans.Request;
+import org.RequestDesk.beans.Status;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.dao.RequestDao;
 import org.RequestDesk.misc.AuthorizeUtil;
@@ -37,6 +39,9 @@ public class RequestController extends HttpServlet
         	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
         	Request _request = RequestDao.GetRequest(requestID);
         	User user = AuthorizeUtil.GetUserById(_request.GetAuthor());
+        	User assigned = AuthorizeUtil.GetUserById(_request.GetAssigned());
+        	Status status = RequestDao.GetRequestStatus(_request.GetStatus());
+        	Group group = RequestDao.GetRequestGroup(_request.GetRequestGroup());
         	if(_request != null)
         	{
         		request.setAttribute("request", _request);
@@ -48,7 +53,31 @@ public class RequestController extends HttpServlet
                 	user.SetFullName("User Not Found");
                 	user.SetLastLoginDate("User Not Found");
         		}
+        		if (assigned == null)
+        		{
+        			assigned = new User();
+        			assigned.SetLogin("Not assigned");
+        			assigned.SetEmail("Not assigned");
+        			assigned.SetFullName("Not assigned");
+        			assigned.SetLastLoginDate("Not assigned");
+        		}
+        		if (status == null)
+        		{
+        			status = new Status();
+        			status.SetId(1);
+                	status.SetName("None");
+                	status.SetColor(0);
+        		}
+        		if (group == null)
+        		{
+        			group = new Group();
+        			group.SetId(1);
+        			group.SetName("None");
+        		}
         		request.setAttribute("user", user);
+        		request.setAttribute("assigned", assigned);
+        		request.setAttribute("status", status);
+        		request.setAttribute("group", group);
         	}
         	else
         	{

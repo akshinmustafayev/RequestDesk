@@ -12,8 +12,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- All CSS -->
+		<link rel="stylesheet" href="css/requestdesk.css">
+		<link rel="stylesheet" href="css/request.css">
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/home.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/open-iconic-bootstrap.css">
 		<!-- Optional JavaScript -->
@@ -21,6 +22,8 @@
 		<script src="js/jquery-3.2.1.slim.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/requestdesk.js"></script>
+		<script src="js/request.js"></script>
 		<title>RequestDesk - Request</title>
 	</head>
 	<body>
@@ -56,7 +59,7 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle pr-3" style="float:left;">Request id#: ${request.GetId()}</span>
+					<span class="align-middle pr-3" style="float:left;" id="RDRequestID" data-info="${request.GetId()">Request id#: ${request.GetId()}</span>
 					<div class="dropdown ml-3">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -71,7 +74,7 @@
 				<h4 class="card-title">${request.GetTopic()}</h4>
 				<span class="badge badge-secondary mb-3">by ${user.GetFullName()}</span>
 				<span class="badge badge-secondary mb-3">${request.GetCreatedDate()}</span>
-				<span class="badge badge-secondary mb-3">Status: Open</span>
+				<span class="badge badge-secondary mb-3">Status: ${status.GetName()}</span>
 				
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
@@ -99,12 +102,21 @@
 						<p></p>
 					</div>
 					<div id="solution" class="tab-pane fade border-right border-bottom border-left p-3">
-						<h3>Menu 2</h3>
-						<p></p>
+						<!--
+						<div class="card card-body bg-light">
+						     <p>${request.GetSolution()}</p>
+						</div>
+						-->
+						<div class="loadingcenter">
+							<div class="spinner-grow" role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
+						</div>	
 					</div>
 					<div id="history" class="tab-pane fade border-right border-bottom border-left p-3">
-						<h3>Menu 2</h3>
-						<p></p>
+						<div class="card card-body bg-light">
+						     History
+						</div>
 					</div>
 				</div>
 				
@@ -112,15 +124,15 @@
 					<tbody>
 						<tr>
 							<td>Status:</td>
-							<td><span class="badge badge-primary"></span></td>
+							<td><span class="badge badge-primary">${status.GetName()}</span></td>
 							<td>Author:</td>
 							<td><span class="badge badge-dark">${user.GetFullName()}</span></td>
 						</tr>
 						<tr>
 							<td>Assigned to:</td>
-							<td><span class="badge badge-dark"></span></td>
+							<td><span class="badge badge-dark">${assigned.GetFullName()}</span></td>
 							<td>Group:</td>
-							<td><span class="badge badge-dark"></span></td>
+							<td><span class="badge badge-dark">${group.GetName()}</span></td>
 						</tr>
 						<tr>
 							<td>Created date:</td>

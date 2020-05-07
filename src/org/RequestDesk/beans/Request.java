@@ -10,6 +10,7 @@ public class Request
 	private String topic;
 	private String description;
 	private String createddate;
+	private String solution;
 	private int author;
 	private int status;
 	private int priority;
@@ -49,6 +50,14 @@ public class Request
 	
 	public void SetCreatedDate(String createddate) {
 		this.createddate = createddate;
+	}
+
+	public String GetSolution() {
+		return solution;
+	}
+	
+	public void SetSolution(String solution) {
+		this.solution = solution;
 	}
 
 	public Integer GetAuthor() {

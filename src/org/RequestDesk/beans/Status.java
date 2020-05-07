@@ -17,6 +17,10 @@ public class Status
 		return id;
 	}
 	
+	public void SetId(Integer id) {
+		this.id = id;
+	}
+	
 	public String GetName() {
 		return name;
 	}
