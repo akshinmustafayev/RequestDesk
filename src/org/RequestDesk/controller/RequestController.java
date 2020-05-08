@@ -34,7 +34,8 @@ public class RequestController extends HttpServlet
         System.out.println("Enter doGet for Request Controller");
         AuthorizeUtil.AuthorizedRedirect(request, response);
         
-        if(request.getParameter("requestid") != null)
+        if(request.getParameter("requestid") != null &&
+        		request.getParameter("requestid") != "")
         {
         	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
         	Request _request = RequestDao.GetRequest(requestID);

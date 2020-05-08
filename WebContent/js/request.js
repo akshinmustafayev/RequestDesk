@@ -17,9 +17,17 @@ function RequestLoadSolution()
 		},
 		success : function(responseText) {
 			var result = JSON.parse(responseText);
-			requestsolutionloading.classList.add("hidden");
-			requestsolutiontextcontainer.classList.remove("hidden");
-			requestsolutiontext.innerHTML = result.requestsolution;
+			
+			if(result.requestid == -1)
+			{
+				RedirectToLoginPage();
+			}
+			else
+			{
+				requestsolutionloading.classList.add("hidden");
+				requestsolutiontextcontainer.classList.remove("hidden");
+				requestsolutiontext.innerHTML = result.requestsolution;
+			}
 		},
 	    error: function (request, status, error) {
 	    	requestsolutionloading.classList.add("hidden");

@@ -1,17 +1,19 @@
 package org.RequestDesk.dao;
 
 import org.RequestDesk.beans.RequestType;
-import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
-import org.RequestDesk.misc.HashUtil;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class HomeDao {
+public class HomeDao 
+{
+	/**
+	Function returns all request types in ArrayList type.
+	@return Returns ArrayList<RequestType> array
+	*/
 	public ArrayList GetRequestTypes()
     {
 		ArrayList<RequestType> requestTypes = new ArrayList<RequestType>();

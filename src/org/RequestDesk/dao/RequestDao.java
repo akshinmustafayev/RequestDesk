@@ -3,16 +3,20 @@ package org.RequestDesk.dao;
 import org.RequestDesk.beans.Group;
 import org.RequestDesk.beans.Request;
 import org.RequestDesk.beans.RequestStatus;
-import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class RequestDao 
 {
+	/**
+	Function for getting all request from DB by its ID.
+	This function should be checked if Null result returned.
+	@param	id	Request id
+	@return Returns Request bean class
+	*/
 	public static Request GetRequest(Integer requestid)
 	{
 		Request request = null;
@@ -53,6 +57,12 @@ public class RequestDao
 		return request;
 	}
 	
+	/**
+	Function for getting request status from DB.
+	This function should be checked if Null result returned.
+	@param	requeststatus	Request status id
+	@return Returns Request Status bean class
+	*/
 	public static RequestStatus GetRequestStatus(Integer requeststatus)
 	{
 		RequestStatus status = null;
@@ -85,6 +95,12 @@ public class RequestDao
 		return status;
 	}
 	
+	/**
+	Function for getting request group from DB.
+	This function should be checked if Null result returned.
+	@param	requestgroup	Request group id
+	@return Returns Request Group bean class
+	*/
 	public static Group GetRequestGroup(Integer requestgroup)
 	{
 		Group group = null;

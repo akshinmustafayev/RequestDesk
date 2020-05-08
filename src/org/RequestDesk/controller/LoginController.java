@@ -45,8 +45,10 @@ public class LoginController extends HttpServlet
     	AuthorizeUtil.FixUtf8(response);
     	
 		if(request.getParameter("login_button") != null && 
-				request.getParameter("login") !=null && 
-				request.getParameter("password") != null)
+				request.getParameter("login") != null && 
+				request.getParameter("password") != null &&
+				request.getParameter("login") != "" && 
+				request.getParameter("password") != "")
 		{
 		    String login = request.getParameter("login");
 		    String password = request.getParameter("password");

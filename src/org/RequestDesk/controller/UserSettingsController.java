@@ -42,7 +42,9 @@ public class UserSettingsController extends HttpServlet
 			throws ServletException, IOException 
     {
     	AuthorizeUtil.FixUtf8(response);
-		if(request.getParameter("language_set_button") != null && request.getParameter("language") != null)
+		if(request.getParameter("language_set_button") != null && 
+				request.getParameter("language") != null &&
+				request.getParameter("language") != "")
 		{
 			String language = request.getParameter("language");
 			System.out.println(language);

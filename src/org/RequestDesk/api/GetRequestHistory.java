@@ -24,40 +24,56 @@ public class GetRequestHistory extends HttpServlet
     		throws ServletException, IOException 
     {
 		AuthorizeUtil.FixUtf8(response);
-        AuthorizeUtil.AuthorizedRedirect(request, response);
-
-        if(request.getParameter("requestid") != null)
-		{
-        	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
-        	
-        	Request _request = new Request();
-        	try
-        	{
-            	Connection conn = ConnectionUtils.getConnection();
-                PreparedStatement pstmt = null;
-                
-                pstmt = conn.prepareStatement("select * from requestshistory where id=?"); 
-                pstmt.setInt(1, requestID);
-                ResultSet rs = pstmt.executeQuery();
-                
-                while(rs.next())
-                {
-                    _request.SetSolution(rs.getString("solution"));
-                } 
-               
-                pstmt.close();
-                conn.close();
-            }
-            catch(Exception e)
-            {
-            	_request.SetSolution("Error occured!");
-                e.printStackTrace();
-            }
-        	
-        	String result = "{ \"requestid\":" + requestID + ", \"requestsolution\":\"" + _request.GetSolution() + "\" }";
+        Boolean authroized = AuthorizeUtil.AuthorizedForAPI(request, response);
+        if(authroized == false)
+        {
+        	String result = "{ \"requestid\":-1, \"requesthistory\":\"Not authorized!\" }";
 	        PrintWriter out = response.getWriter();
 	        out.println(result);
-	        
+	        System.out.println("reached here");
+	        System.exit(0);
+        }
+
+        if(request.getParameter("requestid") != null && request.getParameter("requestid") != "")
+		{
+        	if(authroized == true)
+        	{
+	        	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
+	        	
+	        	Request _request = new Request();
+	        	try
+	        	{
+	            	Connection conn = ConnectionUtils.getConnection();
+	                PreparedStatement pstmt = null;
+	                
+	                pstmt = conn.prepareStatement("select * from requestshistory where id=?"); 
+	                pstmt.setInt(1, requestID);
+	                ResultSet rs = pstmt.executeQuery();
+	                
+	                while(rs.next())
+	                {
+	                    _request.SetSolution(rs.getString("solution"));
+	                } 
+	               
+	                pstmt.close();
+	                conn.close();
+	            }
+	            catch(Exception e)
+	            {
+	            	_request.SetSolution("Error occured!");
+	                e.printStackTrace();
+	            }
+	        	
+	        	String result = "{ \"requestid\":" + requestID + ", \"requestsolution\":\"" + _request.GetSolution() + "\" }";
+		        PrintWriter out = response.getWriter();
+		        out.println(result);
+        	}
+            else
+            {
+            	String result = "{ \"requestid\":-1, \"requestsolution\":\"Request id required\" }";
+    	        PrintWriter out = response.getWriter();
+    	        out.println(result);
+            }
 		}
     }
 }

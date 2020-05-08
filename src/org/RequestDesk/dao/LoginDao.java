@@ -10,11 +10,17 @@ import java.sql.ResultSet;
 
 public class LoginDao
 {
-	public Boolean AuthorizeLogin(User userBean)
+	/**
+	Function for User login.
+	Updates session when login is successful.
+	@param	user	User bean class
+	@return Returns true if login process successful, else it returns false
+	*/
+	public Boolean AuthorizeLogin(User user)
     {
-        String login = userBean.GetLogin();
-        String password = userBean.GetPassword();
-        String session = userBean.GetSession();
+        String login = user.GetLogin();
+        String password = user.GetPassword();
+        String session = user.GetSession();
         String timenow = TimeUtil.GetTimeNow();
         
         try
@@ -36,10 +42,10 @@ public class LoginDao
             	dblogin = rs.getString("login");   
                 dbpassword = rs.getString("password");
                 
-                userBean.SetEmail(rs.getString("email"));
-                userBean.SetFullName(rs.getString("fullname"));
-                userBean.SetLastLoginDate(rs.getString("lastlogindate"));
-                userBean.SetLanguage(rs.getString("language"));
+                user.SetEmail(rs.getString("email"));
+                user.SetFullName(rs.getString("fullname"));
+                user.SetLastLoginDate(rs.getString("lastlogindate"));
+                user.SetLanguage(rs.getString("language"));
                 
                 if(login.equals(dblogin) && password.equals(dbpassword))
                 {

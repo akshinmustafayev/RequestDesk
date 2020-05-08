@@ -47,6 +47,10 @@ public class NewRequestController extends HttpServlet
     	AuthorizeUtil.FixUtf8(response);
     	
 		if(request.getParameter("newrequest_button") != null && 
+				request.getParameter("requestType") != null && 
+				request.getParameter("requestTopic") != null && 
+				request.getParameter("requestPriority") != null && 
+				request.getParameter("requestDescription") != null &&
 				request.getParameter("requestType") != "" && 
 				request.getParameter("requestTopic") != "" && 
 				request.getParameter("requestPriority") != "" && 

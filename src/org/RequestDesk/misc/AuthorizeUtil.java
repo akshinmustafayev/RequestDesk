@@ -1,6 +1,5 @@
 package org.RequestDesk.misc;
 
-import org.RequestDesk.beans.Request;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
 
@@ -22,9 +21,10 @@ public class AuthorizeUtil
 {
 	/**
 	Function for User authorization which gets all User information.
+	This function should be checked if Null result returned.
 	@param	request	Default HttpServletRequest
 	@param	response	Default HttpServletResponse
-	@return Returns User bean class
+	@return Returns User bean class if true, else it returns Null
 	*/
 	public static User AuthorizeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -89,6 +89,26 @@ public class AuthorizeUtil
     }
 	
 	/**
+	Function for checking if User is authorized and if not forward to /login page.
+	This function should be used for API
+	@param	request	Default HttpServletRequest
+	@param	response	Default HttpServletResponse
+	@return Returns true if user is authorized, else it returns false
+	*/
+	public static Boolean AuthorizedForAPI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+    	String sessionc = (String) session.getAttribute("session");
+    	String fullname = (String) session.getAttribute("fullname");
+        if (login == null || sessionc == null || fullname == null) 
+        {
+        	return false;
+        }
+        return true;
+    }
+	
+	/**
 	Function for checking if User authorized but pointed to /login page, 
 	and if yes, redirect user to /home page.
 	@param	request	Default HttpServletRequest
@@ -139,7 +159,9 @@ public class AuthorizeUtil
 	
 	/**
 	Get All User Info by ID. 
+	This function should be checked if Null result returned.
 	@param	userid	User id number
+	@return Returns User bean class
 	*/
 	public static User GetUserById(Integer userid)
     {

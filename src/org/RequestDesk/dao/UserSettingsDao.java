@@ -2,18 +2,22 @@ package org.RequestDesk.dao;
 
 import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
-import org.RequestDesk.misc.AuthorizeUtil;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class UserSettingsDao 
 {
-	public Boolean UpdateLanguage(User userBean, String language)
+	/**
+	Function for User authorization which gets all User information.
+	This function should be checked if Null result returned.
+	@param	user	User bean class
+	@param	language	Language which should be set
+	@return Returns true if language changed, else it returns false
+	*/
+	public Boolean UpdateLanguage(User user, String language)
     {
-        String login = userBean.GetLogin();
+        String login = user.GetLogin();
         try
         {
         	Connection conn = ConnectionUtils.getConnection();
