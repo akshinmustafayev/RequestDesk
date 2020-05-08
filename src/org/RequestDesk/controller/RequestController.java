@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.RequestDesk.beans.Group;
 import org.RequestDesk.beans.Request;
-import org.RequestDesk.beans.Status;
+import org.RequestDesk.beans.RequestStatus;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.dao.RequestDao;
 import org.RequestDesk.misc.AuthorizeUtil;
@@ -40,7 +40,7 @@ public class RequestController extends HttpServlet
         	Request _request = RequestDao.GetRequest(requestID);
         	User user = AuthorizeUtil.GetUserById(_request.GetAuthor());
         	User assigned = AuthorizeUtil.GetUserById(_request.GetAssigned());
-        	Status status = RequestDao.GetRequestStatus(_request.GetStatus());
+        	RequestStatus status = RequestDao.GetRequestStatus(_request.GetStatus());
         	Group group = RequestDao.GetRequestGroup(_request.GetRequestGroup());
         	if(_request != null)
         	{
@@ -63,7 +63,7 @@ public class RequestController extends HttpServlet
         		}
         		if (status == null)
         		{
-        			status = new Status();
+        			status = new RequestStatus();
         			status.SetId(1);
                 	status.SetName("None");
                 	status.SetColor(0);

@@ -2,7 +2,7 @@ package org.RequestDesk.dao;
 
 import org.RequestDesk.beans.Group;
 import org.RequestDesk.beans.Request;
-import org.RequestDesk.beans.Status;
+import org.RequestDesk.beans.RequestStatus;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
 
@@ -53,9 +53,9 @@ public class RequestDao
 		return request;
 	}
 	
-	public static Status GetRequestStatus(Integer requeststatus)
+	public static RequestStatus GetRequestStatus(Integer requeststatus)
 	{
-		Status status = null;
+		RequestStatus status = null;
 		
 		try
         {
@@ -68,7 +68,7 @@ public class RequestDao
             
             while(rs.next())
             {
-            	status = new Status();
+            	status = new RequestStatus();
             	status.SetId(rs.getInt("id"));
             	status.SetName(rs.getString("name"));
             	status.SetColor(rs.getInt("color"));

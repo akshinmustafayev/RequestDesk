@@ -21,7 +21,7 @@ public class HomeDao {
         	Connection conn = ConnectionUtils.getConnection();
             PreparedStatement pstmt = null;
             
-            pstmt = conn.prepareStatement("select * from requesttypes");
+            pstmt = conn.prepareStatement("select * from requeststypes");
             ResultSet rs = pstmt.executeQuery();
             
             while (rs.next())

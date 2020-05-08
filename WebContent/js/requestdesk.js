@@ -1,25 +1,11 @@
-function SetDataToItem(class_name, data_info_value, data)
+function SetDataToItem(item_name, value)
 {
-	var item = document.getElementsByClassName(class_name);
-	for (var i = 0; i < item.length; i++) 
-	{
-		if (item[i].getAttribute('data-info') == data_info_value)
-		{
-			item[i].innerHTML = data;
-		}
-	}
+	var item = document.getElementById(item_name);
+	item.setAttribute('data-info', value);
 }
 
-function GetDataFromItem(class_name, data_info_value)
+function GetDataFromItem(item_name)
 {
-	var item_html;
-	var item = document.getElementsByClassName(class_name);
-	for (var i = 0; i < item.length; i++) 
-	{
-		if (item[i].getAttribute('data-info') == data_info_value)
-		{
-			item_html = item[i];
-		}
-	}
-	return item_html;
+	var item = document.getElementById(item_name);
+	return item.getAttribute('data-info');
 }

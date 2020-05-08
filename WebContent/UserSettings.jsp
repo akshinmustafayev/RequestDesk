@@ -4,38 +4,41 @@
 	AuthorizeUtil.UserLoadedJspRedirect(request, response, "UserSettings.jsp", "/usersettings");
 	AuthorizeUtil.AuthorizedRedirect(request, response);
  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<!-- All CSS -->
 		<link rel="stylesheet" href="css/requestdesk.css">
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="js/jquery-3.2.1.slim.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<title>RequestDesk - Profile Settings</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="Home.jsp">RequestDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="requestdesk-logo"> RequestDesk</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="Home.jsp">Home<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/home">Home<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="Requests.jsp">Requests</a>
+						<a class="nav-link" href="${context}/requests">Requests</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="AdminHome.jsp">Admin</a>
+						<a class="nav-link" href="${context}/adminhome">Admin</a>
 					</li>
 				</ul>
 			</div>

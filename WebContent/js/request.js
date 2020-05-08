@@ -1,15 +1,30 @@
 function RequestLoadSolution()
 {
-	var requestid = GetDataFromItem();
+	var requestid = GetDataFromItem("RDRequestID");
+	var requestsolutionloading = document.getElementById("RDrequestSolutionLoading");
+	var requestsolutiontextcontainer = document.getElementById("RDrequestSolutionTextContainer");
+	var requestsolutiontext = document.getElementById("RDrequestSolutionText");
+	
+	requestsolutionloading.classList.remove("hidden");
+	requestsolutiontextcontainer.classList.add("hidden");
+	requestsolutiontext.innerHTML = "";
 	
 	$.ajax({
 		type:"GET",
-		url : 'api/GetUserServlet',
+		url : 'api/GetRequestSolution',
 		data : {
-			userName : $('#userName').val()
+			requestid : requestid 
 		},
 		success : function(responseText) {
-			$('#ajaxGetUserServletResponse').text(responseText);
-		}
+			var result = JSON.parse(responseText);
+			requestsolutionloading.classList.add("hidden");
+			requestsolutiontextcontainer.classList.remove("hidden");
+			requestsolutiontext.innerHTML = result.requestsolution;
+		},
+	    error: function (request, status, error) {
+	    	requestsolutionloading.classList.add("hidden");
+			requestsolutiontextcontainer.classList.remove("hidden");
+			requestsolutiontext.innerHTML = error;
+	    }
 	});
 }

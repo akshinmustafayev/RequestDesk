@@ -11,6 +11,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<!-- All CSS -->
 		<link rel="stylesheet" href="css/requestdesk.css">
 		<link rel="stylesheet" href="css/request.css">
@@ -19,7 +20,7 @@
 		<link rel="stylesheet" href="css/open-iconic-bootstrap.css">
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="js/jquery-3.2.1.slim.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/requestdesk.js"></script>
@@ -28,7 +29,7 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home">RequestDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="requestdesk-logo"> RequestDesk</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -59,7 +60,7 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle pr-3" style="float:left;" id="RDRequestID" data-info="${request.GetId()">Request id#: ${request.GetId()}</span>
+					<span class="align-middle pr-3" style="float:left;" id="RDRequestID" data-info="${request.GetId()}">Request id#: ${request.GetId()}</span>
 					<div class="dropdown ml-3">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -85,7 +86,7 @@
 						<a class="nav-link" data-toggle="tab" href="#approvers">Approvers</a>
 					</li>
 					-->
-					<li class="nav-item">
+					<li class="nav-item" onclick="RequestLoadSolution()">
 						<a class="nav-link" data-toggle="tab" href="#solution">Solution</a>
 					</li>
 					<li class="nav-item">
@@ -102,12 +103,10 @@
 						<p></p>
 					</div>
 					<div id="solution" class="tab-pane fade border-right border-bottom border-left p-3">
-						<!--
-						<div class="card card-body bg-light">
-						     <p>${request.GetSolution()}</p>
+						<div id="RDrequestSolutionTextContainer" class="card card-body bg-light hidden">
+						     <p id="RDrequestSolutionText"></p>
 						</div>
-						-->
-						<div class="loadingcenter">
+						<div class="loadingcenter" id="RDrequestSolutionLoading">
 							<div class="spinner-grow" role="status">
 								<span class="sr-only">Loading...</span>
 							</div>

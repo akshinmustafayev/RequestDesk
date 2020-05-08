@@ -4,7 +4,19 @@
   <welcome-file-list>
     <welcome-file>Login.jsp</welcome-file>
   </welcome-file-list>
+  <!-- ****************************************************************** -->
+  <!-- SERVLET CONFIGS -->
+  <!-- APIs -->
+  <servlet>
+	<servlet-name>ApiGetRequestSolution</servlet-name>
+	<servlet-class>org.RequestDesk.api.GetRequestSolution</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>ApiGetRequestHistory</servlet-name>
+	<servlet-class>org.RequestDesk.api.GetRequestHistory</servlet-class>
+  </servlet>
   
+  <!-- Servlets -->
   <servlet>
 	<servlet-name>Login</servlet-name>
 	<servlet-class>org.RequestDesk.controller.LoginController</servlet-class>
@@ -25,6 +37,10 @@
 	<servlet-name>Request</servlet-name>
 	<servlet-class>org.RequestDesk.controller.RequestController</servlet-class>
   </servlet>
+  
+  <!-- ****************************************************************** -->
+  <!-- SSERVLET MAPPINGS -->
+  <!--  Mapping -->
   <servlet-mapping>
 	<servlet-name>Login</servlet-name>
 	<url-pattern>/login</url-pattern>
@@ -46,4 +62,13 @@
 	<url-pattern>/request</url-pattern>
   </servlet-mapping>
   
+  <!-- APIs mapping -->
+  <servlet-mapping>
+	<servlet-name>ApiGetRequestSolution</servlet-name>
+	<url-pattern>/api/GetRequestSolution</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>ApiGetRequestHistory</servlet-name>
+	<url-pattern>/api/GetRequestHistory</url-pattern>
+  </servlet-mapping>
 </web-app>

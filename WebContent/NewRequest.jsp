@@ -16,6 +16,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<!-- All CSS -->
 		<link rel="stylesheet" href="css/requestdesk.css">
 		<!-- Bootstrap CSS -->
@@ -23,7 +24,7 @@
 		<link rel="stylesheet" href="css/summernote-bs4.min.css">
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="js/jquery-3.2.1.slim.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/summernote-bs4.min.js"></script>
@@ -32,7 +33,7 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home">RequestDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="requestdesk-logo"> RequestDesk</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
