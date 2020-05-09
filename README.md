@@ -24,3 +24,11 @@ Tasks which should be done:
 Images:
 
 <img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/1.PNG" alt="alt text" width="600" height="293">
+
+<img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/2.PNG" alt="alt text" width="600" height="293">
+
+<img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/3.PNG" alt="alt text" width="600" height="293">
+
+<img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/4.PNG" alt="alt text" width="600" height="293">
+
+<img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/5.PNG" alt="alt text" width="600" height="293">
