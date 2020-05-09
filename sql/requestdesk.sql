@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 10:54 AM
+-- Generation Time: May 09, 2020 at 08:47 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -85,8 +85,18 @@ INSERT INTO `requests` (`id`, `topic`, `description`, `createddate`, `solution`,
 CREATE TABLE `requestshistory` (
   `id` int(255) NOT NULL,
   `requestid` int(255) NOT NULL,
-  `action` text NOT NULL DEFAULT ''
+  `action` text NOT NULL DEFAULT '',
+  `date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `requestshistory`
+--
+
+INSERT INTO `requestshistory` (`id`, `requestid`, `action`, `date`) VALUES
+(1, 9, 'Request Created', '09.05.2020 10:10'),
+(2, 9, 'Request Assigned', '06.01.2022 10:10'),
+(3, 2, 'Request Created', '01.08.2020 10:10');
 
 -- --------------------------------------------------------
 
@@ -159,7 +169,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-08 12:12', '', 1, '156f270f22c1f4413f3618374bce0f57416e414ffec7d90f3e0215e29ca7dd1e', 'en');
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-09 22:10', '', 1, 'bf16b859bf0cd5f24c4e77a87abce717b14ca1f41b3a91a84f9e7257ccc1c34a', 'en');
 
 --
 -- Indexes for dumped tables
@@ -233,7 +243,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `requestshistory`
 --
 ALTER TABLE `requestshistory`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `requeststatuses`

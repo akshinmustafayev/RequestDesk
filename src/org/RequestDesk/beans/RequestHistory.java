@@ -9,6 +9,7 @@ public class RequestHistory
 	private int id;
 	private int requestid;
 	private String action;
+	private String date;
 	
 	public RequestHistory() { }
 	
@@ -34,5 +35,13 @@ public class RequestHistory
 	
 	public void SetAction(String action) {
 		this.action = action;
+	}
+	
+	public String GetDate() {
+		return date;
+	}
+	
+	public void SetDate(String date) {
+		this.date = date;
 	}
 }

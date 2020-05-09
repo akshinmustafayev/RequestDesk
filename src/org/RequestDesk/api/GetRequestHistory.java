@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.RequestDesk.beans.Request;
+import org.RequestDesk.beans.RequestHistory;
+import org.RequestDesk.beans.RequestType;
 import org.RequestDesk.conn.ConnectionUtils;
 import org.RequestDesk.misc.AuthorizeUtil;
 
@@ -27,50 +30,79 @@ public class GetRequestHistory extends HttpServlet
         Boolean authroized = AuthorizeUtil.AuthorizedForAPI(request, response);
         if(authroized == false)
         {
-        	String result = "{ \"requestid\":-1, \"requesthistory\":\"Not authorized!\" }";
+        	String result = "{ \"history\": [ { \"historyid\" : -1 , \"requestid\" : -1 , \"historyaction\" : \"Not Authorized\" , \"historydate\" : \"Not Authorized\" } ] }";
 	        PrintWriter out = response.getWriter();
 	        out.println(result);
-	        System.out.println("reached here");
-	        System.exit(0);
         }
 
         if(request.getParameter("requestid") != null && request.getParameter("requestid") != "")
 		{
         	if(authroized == true)
         	{
+        		String history = "{ \"history\": [ ";
 	        	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
 	        	
-	        	Request _request = new Request();
+	        	ArrayList<RequestHistory> requestHistories = new ArrayList<RequestHistory>();
+	        	
 	        	try
 	        	{
 	            	Connection conn = ConnectionUtils.getConnection();
 	                PreparedStatement pstmt = null;
 	                
-	                pstmt = conn.prepareStatement("select * from requestshistory where id=?"); 
+	                pstmt = conn.prepareStatement("select * from requestshistory where requestid=?"); 
 	                pstmt.setInt(1, requestID);
 	                ResultSet rs = pstmt.executeQuery();
 	                
+	                if (rs.next() == false)
+	                {
+	                	history = "{ \"history\": [ { \"historyid\" : -2 , \"requestid\" : -2 , \"historyaction\" : \"Request is empty\" , \"historydate\" : \"Request is empty\" }";
+	                }
+	                
 	                while(rs.next())
 	                {
-	                    _request.SetSolution(rs.getString("solution"));
-	                } 
+	                	RequestHistory requestHistory = new RequestHistory();
+	                	requestHistory.SetId(rs.getInt("id"));
+	                	requestHistory.SetRequestId(rs.getInt("requestid"));
+	                	requestHistory.SetAction(rs.getString("action"));
+	                	requestHistory.SetDate(rs.getString("date"));
+	                	requestHistories.add(requestHistory);
+	                }
 	               
 	                pstmt.close();
 	                conn.close();
 	            }
 	            catch(Exception e)
 	            {
-	            	_request.SetSolution("Error occured!");
+	            	RequestHistory requestHistory = new RequestHistory();
+                	requestHistory.SetId(-1);
+                	requestHistory.SetRequestId(-1);
+                	requestHistory.SetAction("Error occured!");
+                	requestHistory.SetDate("Error occured!");
+                	requestHistories.add(requestHistory);
 	                e.printStackTrace();
 	            }
 	        	
-	        	String result = "{ \"requestid\":" + requestID + ", \"requestsolution\":\"" + _request.GetSolution() + "\" }";
+	        	for (int i = 0; i < requestHistories.size(); i++) 
+	        	{
+	        		if(i == requestHistories.size() - 1)
+	        		{
+	        			history = history + "{ \"historyid\" : " + requestHistories.get(i).GetId() + " , \"requestid\" : " + requestHistories.get(i).GetRequestId() + " , \"historyaction\" : \"" + requestHistories.get(i).GetAction() + "\", \"historydate\" : \"" + requestHistories.get(i).GetDate() + "\" }";
+	        			
+	        		}
+	        		else
+	        		{
+	        			history = history + "{ \"historyid\" : " + requestHistories.get(i).GetId() + " , \"requestid\" : " + requestHistories.get(i).GetRequestId() + " , \"historyaction\" : \"" + requestHistories.get(i).GetAction() + "\", \"historydate\" : \"" + requestHistories.get(i).GetDate() +  "\" }, ";
+	        		}
+	        	}
+	        	
+	        	history = history + " ] }";
+	        	
 		        PrintWriter out = response.getWriter();
-		        out.println(result);
+		        out.println(history);
         	}
             else
             {
-            	String result = "{ \"requestid\":-1, \"requestsolution\":\"Request id required\" }";
+            	String result = "{ \"history\": [ { \"historyid\" : -1 , \"requestid\" : -1 , \"historyaction\" : \"Request ID Required\" , \"historydate\" : \"Request ID Required\" } ] }";
     	        PrintWriter out = response.getWriter();
     	        out.println(result);
             }

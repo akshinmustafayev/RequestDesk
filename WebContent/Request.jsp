@@ -89,7 +89,7 @@
 					<li class="nav-item" onclick="RequestLoadSolution()">
 						<a class="nav-link" data-toggle="tab" href="#solution">Solution</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item" onclick="RequestLoadHistory()">
 						<a class="nav-link" data-toggle="tab" href="#history">History</a>
 					</li>
 				</ul>
@@ -113,8 +113,20 @@
 						</div>	
 					</div>
 					<div id="history" class="tab-pane fade border-right border-bottom border-left p-3">
-						<div class="card card-body bg-light">
-						     History
+						<div id="RDrequestHistoryTextContainer" class="card card-body bg-light hidden">
+							<p5>History</p5>
+						    <ul id="RDrequestHistoryText" class="list-group list-group-flush m-1">
+								<li class="list-group-item">Cras justo odio</li>
+								<li class="list-group-item">Dapibus ac facilisis in</li>
+								<li class="list-group-item">Morbi leo risus</li>
+							 	<li class="list-group-item">Porta ac consectetur ac</li>
+								<li class="list-group-item">Vestibulum at eros</li>
+							</ul>
+						</div>
+						<div class="loadingcenter" id="RDrequestHistoryLoading">
+							<div class="spinner-grow" role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
 						</div>
 					</div>
 				</div>
