@@ -22,4 +22,5 @@ Tasks which should be done:
 - [ ] Refactor code, fix bugs
 
 Images:
+
 <img src="https://github.com/akshinmustafayev/RequestDesk/blob/master/deploy/screenshoots/1.PNG" alt="alt text" width="600" height="293">
