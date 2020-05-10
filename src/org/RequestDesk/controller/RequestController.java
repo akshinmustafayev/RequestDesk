@@ -1,8 +1,6 @@
 package org.RequestDesk.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -39,14 +37,25 @@ public class RequestController extends HttpServlet
         if(request.getParameter("requestid") != null &&
         		request.getParameter("requestid") != "")
         {
-        	Integer requestID = Integer.parseInt(request.getParameter("requestid"));
+        	Integer requestID = 0;
+        	try
+        	{
+        		requestID = Integer.parseInt(request.getParameter("requestid"));
+        	}
+        	catch (NumberFormatException e) 
+        	{
+        		request.setAttribute("ErrorRequestNotNumber", true); 
+            	request.getRequestDispatcher("/requests").forward(request, response);
+        	}
+        	
         	Request _request = RequestDao.GetRequest(requestID);
-        	User user = AuthorizeUtil.GetUserById(_request.GetAuthor());
-        	User assigned = AuthorizeUtil.GetUserById(_request.GetAssigned());
-        	RequestStatus status = RequestDao.GetRequestStatus(_request.GetStatus());
-        	Group group = RequestDao.GetRequestGroup(_request.GetRequestGroup());
         	if(_request != null)
         	{
+            	User user = AuthorizeUtil.GetUserById(_request.GetAuthor());
+            	User assigned = AuthorizeUtil.GetUserById(_request.GetAssigned());
+            	RequestStatus status = RequestDao.GetRequestStatus(_request.GetStatus());
+            	Group group = RequestDao.GetRequestGroup(_request.GetRequestGroup());
+            	
         		request.setAttribute("request", _request);
         		if (user == null)
         		{
@@ -84,8 +93,14 @@ public class RequestController extends HttpServlet
         	}
         	else
         	{
-        		response.sendRedirect(request.getContextPath() + "/home");
+        		request.setAttribute("ErrorRequestNotFound", true); 
+            	request.getRequestDispatcher("/requests").forward(request, response);
         	}
+        }
+        else
+        {
+        	request.setAttribute("ErrorEmptyRequestID", true); 
+        	request.getRequestDispatcher("/requests").forward(request, response);
         }
         
         

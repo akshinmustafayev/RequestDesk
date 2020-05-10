@@ -88,7 +88,7 @@ public class LoginController extends HttpServlet
 		    }
 		    else
 		    {
-		        request.setAttribute("WrongLoginMsg", true); 
+		        request.setAttribute("ErrorWrongLogin", true); 
 		        RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp"); 
 		        rd.include(request, response);
 		    }

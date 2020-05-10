@@ -1,0 +1,7 @@
+[data-href] {
+    cursor: pointer;
+}
+
+[data-href]:hover {
+    background:#e2e3e5;
+}

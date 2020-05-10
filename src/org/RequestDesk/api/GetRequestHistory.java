@@ -53,9 +53,9 @@ public class GetRequestHistory extends HttpServlet
 	                pstmt.setInt(1, requestID);
 	                ResultSet rs = pstmt.executeQuery();
 	                
-	                if (rs.next() == false)
+	                if (rs.isBeforeFirst() == false)
 	                {
-	                	history = "{ \"history\": [ { \"historyid\" : -2 , \"requestid\" : -2 , \"historyaction\" : \"Request is empty\" , \"historydate\" : \"Request is empty\" }";
+	                	history = "{ \"history\": [ { \"historyid\" : -2 , \"requestid\" : -2 , \"historyaction\" : \"Request history is empty\" , \"historydate\" : \"Request history is empty\" }";
 	                }
 	                
 	                while(rs.next())
@@ -100,13 +100,13 @@ public class GetRequestHistory extends HttpServlet
 		        PrintWriter out = response.getWriter();
 		        out.println(history);
         	}
-            else
-            {
-            	String result = "{ \"history\": [ { \"historyid\" : -1 , \"requestid\" : -1 , \"historyaction\" : \"Request ID Required\" , \"historydate\" : \"Request ID Required\" } ] }";
-    	        PrintWriter out = response.getWriter();
-    	        out.println(result);
-            }
 		}
+        else
+        {
+        	String result = "{ \"history\": [ { \"historyid\" : -1 , \"requestid\" : -1 , \"historyaction\" : \"Request ID Required\" , \"historydate\" : \"Request ID Required\" } ] }";
+	        PrintWriter out = response.getWriter();
+	        out.println(result);
+        }
     }
 }
 

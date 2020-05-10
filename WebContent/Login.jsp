@@ -4,6 +4,8 @@
 	AuthorizeUtil.UserLoadedJspRedirect(request, response, "Login.jsp", "/login");
 	AuthorizeUtil.AuthorizedRedirectLogin(request, response);
  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ErrorWrongLogin" value='${requestScope["ErrorWrongLogin"]}'/>
 <!doctype html>
 <html>
 	<head>
@@ -29,14 +31,11 @@
 			<label for="inputPassword" class="sr-only">Password</label>
 			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
 			<button name="login_button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			
-			<%
-				if(request.getAttribute("WrongLoginMsg") != null)
-				{
-			  		out.println("<div class=\"alert alert-danger mt-3\" role=\"alert\">Login or Password is incorrect!</div>");
-				}
-			%>
-			
+			<c:choose>
+				<c:when test = "${ErrorWrongLogin == true}">
+					<div class="alert alert-danger mt-2" role="alert">Login or Password is incorrect!</div>
+				</c:when>
+			</c:choose>
 			<p class="mt-5 mb-3 text-muted">© 2020</p>
 		</form>
 	</body>
