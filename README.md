@@ -6,8 +6,10 @@ Tasks which should be done:
 - [x] Create basic Login Page
 - [x] Create basic Home Page
 - [x] Create basic User Settings Page
-- [ ] Create basic Show Request Page - [currently in progress]
-- [ ] Create basic Requests Page
+- [-X-] Create basic Show Request Page [postponed]
+- [ ]     - Request Actions such as Assign, Delete and etc
+- [-X-] Create basic Requests Page - [currently in progress]
+- [ ]     - Requests table by Group implementation
 - [ ] Create basic Admin Settings page
 - [ ]     - Groups
 - [ ]     - Request types
