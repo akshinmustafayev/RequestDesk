@@ -8,6 +8,7 @@ Tasks which should be done:
 - [x] Create basic User Settings Page
 - [x] Create basic Show Request Page [postponed]
 - [ ]     - Request Actions such as Assign, Delete and etc
+- [ ]     - Refactor code with better SQL queries
 - [x] Create basic Requests Page - [currently in progress]
 - [ ]     - Requests table by Group implementation
 - [ ] Create basic Admin Settings page
