@@ -17,6 +17,7 @@ public class User
 	private Integer userrole;
 	private String session;
 	private String language;
+	private Integer requestsgroup;
 	
 	public User() { }
 	
@@ -98,5 +99,13 @@ public class User
 	
 	public void SetLanguage(String language) {
 		this.language = language;
+	}
+	
+	public Integer GetRequestsGroup() {
+		return requestsgroup;
+	}
+	
+	public void SetRequestsGroup(Integer requestsgroup) {
+		this.requestsgroup = requestsgroup;
 	}
 }

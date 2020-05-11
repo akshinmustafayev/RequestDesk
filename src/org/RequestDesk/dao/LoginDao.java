@@ -41,11 +41,13 @@ public class LoginDao
             {    
             	dblogin = rs.getString("login");   
                 dbpassword = rs.getString("password");
-                
+
+                user.SetId(rs.getInt("id"));
                 user.SetEmail(rs.getString("email"));
                 user.SetFullName(rs.getString("fullname"));
                 user.SetLastLoginDate(rs.getString("lastlogindate"));
                 user.SetLanguage(rs.getString("language"));
+                user.SetRequestsGroup(rs.getInt("requestsgroup"));
                 
                 if(login.equals(dblogin) && password.equals(dbpassword))
                 {

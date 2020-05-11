@@ -53,10 +53,11 @@ public class AuthorizeUtil
             	user.SetEmail((String)rs.getString("email"));
             	user.SetFullName(rs.getString("fullname"));
             	user.SetLastLoginDate(rs.getString("lastlogindate"));
-            	user.SetLanguage(rs.getString("language"));
             	user.SetSession(rs.getString("session"));
             	user.SetLanguage(rs.getString("language"));
             	user.SetUserRole(rs.getInt("userrole"));
+            	user.SetLanguage(rs.getString("language"));
+            	user.SetRequestsGroup(rs.getInt("requestsgroup"));
                 return user;
             }
             
@@ -189,6 +190,7 @@ public class AuthorizeUtil
             	user.SetSession(rs.getString("session"));
             	user.SetLanguage(rs.getString("language"));
             	user.SetUserRole(rs.getInt("userrole"));
+            	user.SetRequestsGroup(rs.getInt("requestsgroup"));
             } 
             
             pstmt.close();

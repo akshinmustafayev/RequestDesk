@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 08:47 PM
+-- Generation Time: May 11, 2020 at 07:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -39,7 +39,10 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `createddate`) VALUES
 (1, 'None', '2020-05-07'),
-(2, 'SysAdm', '2020-05-07');
+(2, 'SysAdm', '2020-05-07'),
+(3, 'Business Analytics', '2020-08-07'),
+(4, 'Programmers', '2020-09-07'),
+(5, 'Another group', '2020-06-09');
 
 -- --------------------------------------------------------
 
@@ -49,9 +52,9 @@ INSERT INTO `groups` (`id`, `name`, `createddate`) VALUES
 
 CREATE TABLE `requests` (
   `id` int(255) NOT NULL,
-  `topic` text NOT NULL,
-  `description` text NOT NULL,
-  `createddate` text NOT NULL,
+  `topic` text NOT NULL DEFAULT '',
+  `description` text NOT NULL DEFAULT '',
+  `createddate` text NOT NULL DEFAULT '',
   `solution` text NOT NULL DEFAULT '',
   `author` int(32) NOT NULL,
   `status` int(32) NOT NULL,
@@ -148,6 +151,28 @@ INSERT INTO `requeststypes` (`id`, `name`, `description`, `createddate`, `needap
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `usergroups`
+--
+
+CREATE TABLE `usergroups` (
+  `id` int(32) NOT NULL,
+  `userid` int(32) NOT NULL,
+  `groupid` int(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `usergroups`
+--
+
+INSERT INTO `usergroups` (`id`, `userid`, `groupid`) VALUES
+(1, 1, 2),
+(2, 1, 4),
+(3, 2, 3),
+(4, 1, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -161,15 +186,16 @@ CREATE TABLE `users` (
   `passwordsalt` varchar(255) NOT NULL,
   `userrole` int(5) NOT NULL,
   `session` varchar(255) NOT NULL,
-  `language` varchar(10) NOT NULL DEFAULT 'en'
+  `language` varchar(10) NOT NULL DEFAULT 'en',
+  `requestsgroup` int(32) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-09 22:10', '', 1, 'bf16b859bf0cd5f24c4e77a87abce717b14ca1f41b3a91a84f9e7257ccc1c34a', 'en');
+INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`, `requestsgroup`) VALUES
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-11 19:30', '', 1, '89317d6c65298777e3b554865029b183c3eec083ed9a75d136ea44de1ecd3c40', 'en', 0);
 
 --
 -- Indexes for dumped tables
@@ -189,7 +215,13 @@ ALTER TABLE `groups`
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
+  ADD KEY `id_2` (`id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `status` (`status`),
+  ADD KEY `priority` (`priority`),
+  ADD KEY `requestgroup` (`requestgroup`),
+  ADD KEY `requesttype` (`requesttype`),
+  ADD KEY `assigned` (`assigned`);
 
 --
 -- Indexes for table `requestshistory`
@@ -197,7 +229,8 @@ ALTER TABLE `requests`
 ALTER TABLE `requestshistory`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
+  ADD KEY `id_2` (`id`),
+  ADD KEY `requestid` (`requestid`);
 
 --
 -- Indexes for table `requeststatuses`
@@ -216,6 +249,16 @@ ALTER TABLE `requeststypes`
   ADD KEY `id_2` (`id`);
 
 --
+-- Indexes for table `usergroups`
+--
+ALTER TABLE `usergroups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_2` (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `groupid` (`groupid`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -231,7 +274,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -256,6 +299,12 @@ ALTER TABLE `requeststatuses`
 --
 ALTER TABLE `requeststypes`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `usergroups`
+--
+ALTER TABLE `usergroups`
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

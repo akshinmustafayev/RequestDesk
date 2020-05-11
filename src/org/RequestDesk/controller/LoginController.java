@@ -53,28 +53,29 @@ public class LoginController extends HttpServlet
 		    String login = request.getParameter("login");
 		    String password = request.getParameter("password");
 		    
-		    User userBean = new User();
-		    userBean.SetLogin(login);
-		    userBean.SetPassword(password);
-		    userBean.SetSession(HashUtil.GetSHA256());
+		    User user = new User();
+		    user.SetLogin(login);
+		    user.SetPassword(password);
+		    user.SetSession(HashUtil.GetSHA256());
 		    
 		    LoginDao loginDao = new LoginDao(); 
 		    
-		    Boolean authorize = loginDao.AuthorizeLogin(userBean); 
+		    Boolean authorize = loginDao.AuthorizeLogin(user); 
 		    
 		    if(authorize.equals(true))
 		    {
 		        HttpSession session = request.getSession();
-		        session.setAttribute("login", userBean.GetLogin());
-		        session.setAttribute("session", userBean.GetSession());
-		        session.setAttribute("fullname", userBean.GetFullName());
-		        session.setAttribute("lastlogindate", userBean.GetLastLoginDate());
-		        session.setAttribute("language", userBean.GetLanguage());
+		        session.setAttribute("login", user.GetLogin());
+		        session.setAttribute("session", user.GetSession());
+		        session.setAttribute("fullname", user.GetFullName());
+		        session.setAttribute("lastlogindate", user.GetLastLoginDate());
+		        session.setAttribute("language", user.GetLanguage());
+		        session.setAttribute("requestsgroup", user.GetRequestsGroup());
 		        
-		        Cookie cookieLogin = new Cookie("login", userBean.GetLogin());
-		        Cookie cookieSession = new Cookie("session", userBean.GetSession());
-		        Cookie cookieFullName = new Cookie("fullname", userBean.GetFullName());
-		        Cookie cookieLanguage = new Cookie("language", userBean.GetLanguage());
+		        Cookie cookieLogin = new Cookie("login", user.GetLogin());
+		        Cookie cookieSession = new Cookie("session", user.GetSession());
+		        Cookie cookieFullName = new Cookie("fullname", user.GetFullName());
+		        Cookie cookieLanguage = new Cookie("language", user.GetLanguage());
 		        cookieLogin.setMaxAge(24 * 60 * 60);
 		        response.addCookie(cookieLogin);
 		        cookieSession.setMaxAge(24 * 60 * 60);

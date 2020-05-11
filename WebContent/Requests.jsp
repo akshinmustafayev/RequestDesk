@@ -63,9 +63,28 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle" style="width:50px;">Go to:</span>
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownRequestsGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    	Dropdown button
+					  	</button>
+					  	<div class="dropdown-menu" aria-labelledby="dropdownRequestsGroup">
+					  		<h6 class="dropdown-header">Accessible groups</h6>
+						  	<c:forEach begin="0" items="${userGroups}" var="userGroup">
+								<a class="dropdown-item" href="#">${userGroup.GetGroupName()}</a>
+							</c:forEach>
+					    	<div class="dropdown-divider"></div>
+					  		<h6 class="dropdown-header">My groups</h6>
+					    	<a class="dropdown-item" href="#">My requests</a>
+					    	<a class="dropdown-item" href="#">My open requests</a>
+					    	<a class="dropdown-item" href="#">My closed requests</a>
+					    	<a class="dropdown-item" href="#">My unassigned requests</a>
+					    	<a class="dropdown-item" href="#">All requests</a>
+					  	</div>
+					</div>
+					<div class="border-left vertical-separator ml-4 mr-4"></div>
+					<span class="align-middle go-to-label">Go to:</span>
 					<form method="GET" class="d-flex" action="request">
-						<input name="requestid" type="number" class="form-control" placeholder="request id #" style="width:115px;" required="">
+						<input name="requestid" type="number" class="form-control go-to-input" placeholder="request id #" required="">
 						<button type="submit" class="btn btn-outline-primary ml-2">Go</button>
 					</form>
 				</div>
@@ -89,6 +108,7 @@
 				<table class="table">
 					<thead>
 						<tr>
+							<th scope="col"></th>
 							<th scope="col">#</th>
 							<th scope="col">Request Topic</th>
 							<th scope="col">Author</th>
@@ -98,6 +118,7 @@
 					</thead>
 					<tbody>
 						<tr data-href="#">
+							<td><input type="checkbox"></td>
 							<th scope="row">1</th>
 							<td>Mark</td>
 							<td>Otto</td>
@@ -105,6 +126,7 @@
 							<td>@mdo</td>
 						</tr>
 						<tr data-href="https://google.com">
+							<td><input type="checkbox"></td>
 							<th scope="row">2</th>
 							<td>Jacob</td>
 							<td>Thornton</td>
@@ -112,6 +134,7 @@
 							<td>@fat</td>
 						</tr>
 						<tr>
+							<td><input type="checkbox"></td>
 							<th scope="row">3</th>
 							<td>Larry</td>
 							<td>the Bird</td>

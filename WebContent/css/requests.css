@@ -5,3 +5,17 @@
 [data-href]:hover {
     background:#e2e3e5;
 }
+
+.go-to-label{
+	width:50px;
+}
+
+.go-to-input{
+	width:125px !important;
+}
+
+.vertical-separator{
+	content: "";
+	width: 1px;
+	height: 25px;
+}
