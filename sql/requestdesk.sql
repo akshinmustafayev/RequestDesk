@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2020 at 07:55 PM
+-- Generation Time: May 12, 2020 at 03:12 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -59,7 +59,7 @@ CREATE TABLE `requests` (
   `author` int(32) NOT NULL,
   `status` int(32) NOT NULL,
   `priority` int(3) NOT NULL,
-  `requestgroup` int(32) NOT NULL DEFAULT 0,
+  `usergroup` int(32) NOT NULL DEFAULT 0,
   `requesttype` int(6) NOT NULL DEFAULT 0,
   `assigned` int(32) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -68,16 +68,17 @@ CREATE TABLE `requests` (
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`id`, `topic`, `description`, `createddate`, `solution`, `author`, `status`, `priority`, `requestgroup`, `requesttype`, `assigned`) VALUES
-(1, 'asdasdasd', '<p>adasd</p><p><u>adsasd</u></p><p><b>asdasdasd</b></p>', '2020-05-03', '', 1, 0, 1, 0, 0, 0),
-(2, 'asd', '', '2020-05-03 14:08', '', 1, 0, 1, 0, 0, 0),
+INSERT INTO `requests` (`id`, `topic`, `description`, `createddate`, `solution`, `author`, `status`, `priority`, `usergroup`, `requesttype`, `assigned`) VALUES
+(1, 'asdasdasd', '<p>adasd</p><p><u>adsasd</u></p><p><b>asdasdasd</b></p>', '2020-05-03', '', 1, 6, 1, 0, 0, 0),
+(2, 'asd', '', '2020-05-03 14:08', '', 2, 2, 1, 0, 0, 0),
 (3, 'asdasd', '<p><u>sdfsdfsdf</u></p>', '2020-05-03 14:16', '', 1, 0, 2, 0, 0, 0),
-(4, 'adsasfasf', '<p><b>sdfsdgdsg</b></p>', '2020-05-03 14:23', '', 1, 0, 2, 0, 2, 0),
+(4, 'adsasfasf', '<p><b>sdfsdgdsg</b></p>', '2020-05-03 14:23', '', 2, 0, 2, 0, 2, 0),
 (5, 'test', '<p>asdasdasd</p>', '2020-05-03 18:42', '', 1, 0, 3, 0, 1, 0),
-(6, 'test', '<p>asdasdasd</p>', '2020-05-03 18:43', '', 1, 0, 1, 0, 1, 0),
-(7, 'new rquest asdasasd', '<p><b>asdasd ad as d<u>as das as d</u></b></p><ol><li><b><u>asdasdasd</u></b></li><li><b><u>asd</u></b></li><li><b><u>asd</u></b></li><li><b><u>sfddssfdfs</u></b></li></ol>', '2020-05-03 20:11', '', 1, 0, 2, 0, 1, 0),
+(6, 'test', '<p>asdasdasd</p>', '2020-05-03 18:43', '', 1, 3, 1, 0, 1, 0),
+(7, 'new rquest asdasasd', '<p><b>asdasd ad as d<u>as das as d</u></b></p><ol><li><b><u>asdasdasd</u></b></li><li><b><u>asd</u></b></li><li><b><u>asd</u></b></li><li><b><u>sfddssfdfs</u></b></li></ol>', '2020-05-03 20:11', '', 2, 0, 2, 0, 1, 0),
 (8, 'Test request for check', '<p><b>Teststesdfsdf</b></p><p><b><u>asdasdasdasd</u></b></p><ol><li><u>asdasdagsdasd</u></li><li><u>asdfasdfsdafa</u></li><li><u>asdgfdsfasdfsdf</u></li></ol><p><br></p>', '2020-05-03 20:37', '', 1, 1, 3, 2, 1, 1),
-(9, 'test', '<p>sdfsdf</p><ol><li>sdf</li><li>sdfgggf</li><li><b>jghgggg</b></li></ol>', '2020-05-07 15:35', 'Some solution for the given problem', 1, 0, 1, 0, 1, 0);
+(9, 'test', '<p>sdfsdf</p><ol><li>sdf</li><li>sdfgggf</li><li><b>jghgggg</b></li></ol>', '2020-05-07 15:35', 'Some solution for the given problem', 1, 5, 1, 0, 1, 0),
+(10, 'New SysAdm request', '<p>need help</p><ol><li><u>server does not workasdasd</u></li><li><u>asdasd</u></li></ol><p style=\"text-align: right; \"><u>asdasdasd</u></p>', '2020-05-12 13:58', '', 1, 0, 1, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -187,7 +188,7 @@ CREATE TABLE `users` (
   `userrole` int(5) NOT NULL,
   `session` varchar(255) NOT NULL,
   `language` varchar(10) NOT NULL DEFAULT 'en',
-  `requestsgroup` int(32) NOT NULL DEFAULT 0
+  `requestsgroup` int(32) NOT NULL DEFAULT -1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -195,7 +196,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`, `requestsgroup`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-11 19:30', '', 1, '89317d6c65298777e3b554865029b183c3eec083ed9a75d136ea44de1ecd3c40', 'en', 0);
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-12 16:43', '', 1, 'b06750e8e4d5b4eff81363a87e81985f106b4ec48220cd02c3ee69b9efb2b85', 'en', 2);
 
 --
 -- Indexes for dumped tables
@@ -219,7 +220,7 @@ ALTER TABLE `requests`
   ADD KEY `author` (`author`),
   ADD KEY `status` (`status`),
   ADD KEY `priority` (`priority`),
-  ADD KEY `requestgroup` (`requestgroup`),
+  ADD KEY `requestgroup` (`usergroup`),
   ADD KEY `requesttype` (`requesttype`),
   ADD KEY `assigned` (`assigned`);
 
@@ -280,7 +281,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `requestshistory`

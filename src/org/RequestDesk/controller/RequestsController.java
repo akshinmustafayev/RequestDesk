@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.RequestDesk.beans.Request;
 import org.RequestDesk.beans.RequestType;
 import org.RequestDesk.beans.User;
 import org.RequestDesk.beans.UserGroup;
@@ -34,24 +35,40 @@ public class RequestsController extends HttpServlet
     	AuthorizeUtil.FixUtf8(response);
         System.out.println("Enter doGet for Requests Controller");
         AuthorizeUtil.AuthorizedRedirect(request, response);
-        
-        // This piece is not working
+
         HttpSession session = request.getSession();
-        Integer requestsgroup = 0;
+
+        if(request.getParameter("requestsgroup") != null &&
+        		request.getParameter("requestsgroup") != "")
+        {
+        	session.removeAttribute("requestsgroup");
+        	session.setAttribute("requestsgroup", request.getParameter("requestsgroup"));
+        }
+        Integer requestsgroup = -1;
         try
         {
-        	requestsgroup = (Integer) session.getAttribute("requestsgroup");
+        	requestsgroup = Integer.parseInt(session.getAttribute("requestsgroup").toString());
         }
         catch  (NumberFormatException e)
         {
-        	requestsgroup = 0;
-        	session.setAttribute("requestsgroup", 0);
+        	requestsgroup = -1;
+        	session.setAttribute("requestsgroup", -1);
         }
-        // up to this
         
         User user = AuthorizeUtil.AuthorizeUser(request, response);
         ArrayList<UserGroup> usergroups = RequestsDao.GetUserGroups(user.GetId());
+        ArrayList<Request> requests = RequestsDao.GetRequests(requestsgroup, user);
+        RequestsDao.UpdateUserRequestsGroup(requestsgroup, user);
         request.setAttribute("userGroups", usergroups); 
+        request.setAttribute("userRequests", requests);
+        if(requestsgroup < 0)
+        {
+        	request.setAttribute("userCurrentGroup", requestsgroup.toString());
+        }
+        else
+        {
+        	request.setAttribute("userCurrentGroup", RequestsDao.GetUserCurrentRequestsGroup(requestsgroup));
+        }
         
         RequestDispatcher rd = request.getRequestDispatcher("/Requests.jsp"); 
         rd.include(request, response);

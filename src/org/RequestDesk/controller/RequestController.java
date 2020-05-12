@@ -54,7 +54,7 @@ public class RequestController extends HttpServlet
             	User user = AuthorizeUtil.GetUserById(_request.GetAuthor());
             	User assigned = AuthorizeUtil.GetUserById(_request.GetAssigned());
             	RequestStatus status = RequestDao.GetRequestStatus(_request.GetStatus());
-            	Group group = RequestDao.GetRequestGroup(_request.GetRequestGroup());
+            	Group group = RequestDao.GetRequestGroup(_request.GetUserGroup());
             	
         		request.setAttribute("request", _request);
         		if (user == null)

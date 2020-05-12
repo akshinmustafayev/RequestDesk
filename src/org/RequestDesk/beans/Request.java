@@ -14,9 +14,12 @@ public class Request
 	private int author;
 	private int status;
 	private int priority;
-	private int requestgroup;
+	private int usergroup;
 	private int requesttype;
 	private int assigned;
+	
+	private String authorname;
+	private String assignedname;
 	
 	public Request() { }
 	
@@ -84,12 +87,12 @@ public class Request
 		this.priority = priority;
 	}
 
-	public Integer GetRequestGroup() {
-		return requestgroup;
+	public Integer GetUserGroup() {
+		return usergroup;
 	}
 	
-	public void SetRequestGroup(Integer requestgroup) {
-		this.requestgroup = requestgroup;
+	public void SetUserGroup(Integer usergroup) {
+		this.usergroup = usergroup;
 	}
 
 	public Integer GetRequestType() {
@@ -106,5 +109,22 @@ public class Request
 	
 	public void SetAssigned(Integer assigned) {
 		this.assigned = assigned;
+	}
+	
+
+	public String GetAuthorName() {
+		return authorname;
+	}
+	
+	public void SetAuthorName(String authorname) {
+		this.authorname = authorname;
+	}
+	
+	public String GetAssignedName() {
+		return assignedname;
+	}
+	
+	public void SetAssignedName(String assignedname) {
+		this.assignedname = assignedname;
 	}
 }

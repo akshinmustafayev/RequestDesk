@@ -65,20 +65,46 @@
 				<div class="d-flex align-items-center">
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownRequestsGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    	Dropdown button
+					    	<c:choose>
+								<c:when test = "${userCurrentGroup == \"-1\"}">
+									My requests
+								</c:when>
+								<c:when test = "${userCurrentGroup == \"-2\"}">
+									My open requests
+								</c:when>
+								<c:when test = "${userCurrentGroup == \"-3\"}">
+									My closed requests
+								</c:when>
+								<c:when test = "${userCurrentGroup == \"-4\"}">
+									My unassigned requests
+								</c:when>
+								<c:when test = "${userCurrentGroup == \"-5\"}">
+									All requests
+								</c:when>
+								<c:otherwise>
+									${userCurrentGroup}
+								</c:otherwise>
+							</c:choose>
 					  	</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownRequestsGroup">
 					  		<h6 class="dropdown-header">Accessible groups</h6>
-						  	<c:forEach begin="0" items="${userGroups}" var="userGroup">
-								<a class="dropdown-item" href="#">${userGroup.GetGroupName()}</a>
-							</c:forEach>
+					  		<c:choose>
+								<c:when test = "${userGroups.size() > 0}">
+									<c:forEach begin="0" items="${userGroups}" var="userGroup">
+										<a class="dropdown-item" href="${context}/requests?requestsgroup=${userGroup.GetGroupId()}">${userGroup.GetGroupName()}</a>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<a class="dropdown-item" href="#">--- No groups ---</a>
+								</c:otherwise>
+							</c:choose>
 					    	<div class="dropdown-divider"></div>
 					  		<h6 class="dropdown-header">My groups</h6>
-					    	<a class="dropdown-item" href="#">My requests</a>
-					    	<a class="dropdown-item" href="#">My open requests</a>
-					    	<a class="dropdown-item" href="#">My closed requests</a>
-					    	<a class="dropdown-item" href="#">My unassigned requests</a>
-					    	<a class="dropdown-item" href="#">All requests</a>
+					    	<a class="dropdown-item" href="${context}/requests?requestsgroup=-1">My requests</a>
+					    	<a class="dropdown-item" href="${context}/requests?requestsgroup=-2">My open requests</a>
+					    	<a class="dropdown-item" href="${context}/requests?requestsgroup=-3">My closed requests</a>
+					    	<a class="dropdown-item" href="${context}/requests?requestsgroup=-4">My unassigned requests</a>
+					    	<a class="dropdown-item" href="${context}/requests?requestsgroup=-5">All requests</a>
 					  	</div>
 					</div>
 					<div class="border-left vertical-separator ml-4 mr-4"></div>
@@ -117,30 +143,30 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-href="#">
-							<td><input type="checkbox"></td>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>@mdo</td>
-						</tr>
-						<tr data-href="https://google.com">
-							<td><input type="checkbox"></td>
-							<th scope="row">2</th>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<th scope="row">3</th>
-							<td>Larry</td>
-							<td>the Bird</td>
-							<td>@twitter</td>
-							<td>@twitter</td>
-						</tr>
+						<c:choose>
+							<c:when test = "${userRequests.size() > 0}">
+								<c:forEach begin="0" items="${userRequests}" var="userRequest">
+									<tr data-href="${context}/request?requestid=${userRequest.GetId()}">
+										<td><input type="checkbox"></td>
+										<th scope="row">${userRequest.GetId()}</th>
+										<td>${userRequest.GetTopic()}</td>
+										<td>${userRequest.GetAuthorName()}</td>
+										<td>${userRequest.GetAssignedName()}</td>
+										<td>${userRequest.GetCreatedDate()}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td></td>
+									<th scope="row">2</th>
+									<td>(empty)</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>

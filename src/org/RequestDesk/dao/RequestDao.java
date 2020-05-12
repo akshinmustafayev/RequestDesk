@@ -41,7 +41,7 @@ public class RequestDao
                 request.SetAuthor(rs.getInt("author"));
                 request.SetStatus(rs.getInt("status"));
                 request.SetPriority(rs.getInt("priority"));
-                request.SetRequestGroup(rs.getInt("requestgroup"));
+                request.SetUserGroup(rs.getInt("usergroup"));
                 request.SetRequestType(rs.getInt("requesttype"));
                 request.SetAssigned(rs.getInt("assigned"));
             } 

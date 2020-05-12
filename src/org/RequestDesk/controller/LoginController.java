@@ -70,7 +70,7 @@ public class LoginController extends HttpServlet
 		        session.setAttribute("fullname", user.GetFullName());
 		        session.setAttribute("lastlogindate", user.GetLastLoginDate());
 		        session.setAttribute("language", user.GetLanguage());
-		        session.setAttribute("requestsgroup", user.GetRequestsGroup());
+		        session.setAttribute("requestsgroup", (Integer) user.GetRequestsGroup());
 		        
 		        Cookie cookieLogin = new Cookie("login", user.GetLogin());
 		        Cookie cookieSession = new Cookie("session", user.GetSession());
