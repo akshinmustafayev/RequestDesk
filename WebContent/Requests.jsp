@@ -64,7 +64,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownRequestsGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownRequestsGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    	<c:choose>
 								<c:when test = "${userCurrentGroup == \"-1\"}">
 									My requests
@@ -113,6 +113,15 @@
 						<input name="requestid" type="number" class="form-control go-to-input" placeholder="request id #" required="">
 						<button type="submit" class="btn btn-outline-primary ml-2">Go</button>
 					</form>
+					<div class="border-left vertical-separator ml-4 mr-4"></div>
+					<div class="dropdown">
+						<button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button">Close</button>
+							<button class="dropdown-item" type="button">Assign</button>
+							<button class="dropdown-item" type="button">Delete</button>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="card-body">
@@ -159,7 +168,7 @@
 							<c:otherwise>
 								<tr>
 									<td></td>
-									<th scope="row">2</th>
+									<th scope="row"></th>
 									<td>(empty)</td>
 									<td></td>
 									<td></td>

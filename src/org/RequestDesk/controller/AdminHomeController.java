@@ -1,10 +1,8 @@
 package org.RequestDesk.controller;
 
-import org.RequestDesk.dao.HomeDao;
 import org.RequestDesk.misc.AuthorizeUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HomeController extends HttpServlet 
+public class AdminHomeController extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,15 +26,12 @@ public class HomeController extends HttpServlet
     		throws ServletException, IOException 
     {
     	AuthorizeUtil.FixUtf8(response);
-    	System.out.println("Enter doGet for Home Controller");
+    	System.out.println("Enter doGet for Admin Home Controller");
     	AuthorizeUtil.AuthorizedRedirect(request, response);
     	
-    	HomeDao homeDao = new HomeDao();
     	
-    	ArrayList requestTypes = homeDao.GetRequestTypes();
-    	request.setAttribute("requestTypes", requestTypes); 
-		
-        RequestDispatcher rd = request.getRequestDispatcher("/Home.jsp"); 
+    	
+        RequestDispatcher rd = request.getRequestDispatcher("/AdminHome.jsp"); 
         rd.include(request, response);
     }
 	
@@ -45,6 +40,6 @@ public class HomeController extends HttpServlet
 			throws ServletException, IOException 
     {
     	AuthorizeUtil.FixUtf8(response);
-    	System.out.println("Enter doPost for Home Controller");
+    	System.out.println("Enter doPost for Admin Home Controller");
     }
 }

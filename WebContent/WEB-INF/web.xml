@@ -44,6 +44,10 @@
 	<servlet-name>Requests</servlet-name>
 	<servlet-class>org.RequestDesk.controller.RequestsController</servlet-class>
   </servlet>
+  <servlet>
+	<servlet-name>AdminHome</servlet-name>
+	<servlet-class>org.RequestDesk.controller.AdminHomeController</servlet-class>
+  </servlet>
   
   <!-- ****************************************************************** -->
   <!-- SSERVLET MAPPINGS -->
@@ -71,6 +75,10 @@
   <servlet-mapping>
 	<servlet-name>Requests</servlet-name>
 	<url-pattern>/requests</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>AdminHome</servlet-name>
+	<url-pattern>/adminhome</url-pattern>
   </servlet-mapping>
   
   <!-- APIs mapping -->
