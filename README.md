@@ -12,16 +12,17 @@ Tasks which should be done:
 - [x] Create basic Requests Page - [currently in progress]
 - [x]     - Requests table by Group implementation
 - [ ]     - Delete requests using checkbox and other request actions
-- [ ] Create basic Admin Settings page
-- [ ]     - Groups
-- [ ]     - Request types
-- [ ]     - Request statuses
-- [ ]     - Possibility to send Email alerts
-- [ ]     - Configure Email alerts events
-- [ ]     - Users page
-- [ ]     - Technicians page
-- [ ]     - Request closure templates
-- [ ] Create Report page
+- [ ] Create basic Admin Settings pages
+- [x]     - Admin Home page
+- [ ]     - Admin Technicians page
+- [ ]     - Admin Groups page
+- [ ]     - Admin Users page
+- [ ]     - Admin Request Types page
+- [ ]     - Admin Request Priorities page
+- [ ]     - Admin Request Statuses page
+- [ ]     - Admin Email Settings page
+- [ ]     - Admin Request closure templates page
+- [ ] Create Reports page for Reporting
 - [ ] Rethink user acesses
 - [ ] Refactor code, fix bugs
 
