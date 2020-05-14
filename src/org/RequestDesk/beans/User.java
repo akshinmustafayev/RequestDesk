@@ -14,10 +14,12 @@ public class User
 	private String fullname;
 	private String lastlogindate;
 	private String passwordsalt;
-	private Integer userrole;
 	private String session;
 	private String language;
 	private Integer requestsgroup;
+	
+	private Integer userrole;
+	private String userrolename;
 	
 	public User() { }
 	
@@ -77,14 +79,6 @@ public class User
 		this.passwordsalt = passwordsalt;
 	}
 
-	public Integer GetUserRole() {
-		return userrole;
-	}
-	
-	public void SetUserRole(Integer userrole) {
-		this.userrole = userrole;
-	}
-
 	public String GetSession() {
 		return session;
 	}
@@ -107,5 +101,22 @@ public class User
 	
 	public void SetRequestsGroup(Integer requestsgroup) {
 		this.requestsgroup = requestsgroup;
+	}
+
+	
+	public Integer GetUserRole() {
+		return userrole;
+	}
+	
+	public void SetUserRole(Integer userrole) {
+		this.userrole = userrole;
+	}
+	
+	public String GetUserRoleName() {
+		return userrolename;
+	}
+	
+	public void SetUserRoleName(String userrolename) {
+		this.userrolename = userrolename;
 	}
 }

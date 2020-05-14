@@ -58,7 +58,7 @@
 		<h1 class="display-5 ml-4 mr-4 mt-2 mb-4">Details</h1>
 		<div class="row ml-4 mr-4 mt-2 mb-4">
             <div class="thumbnails">
-			    <a class="thumbnail" href="#">
+			    <a class="thumbnail" href="${context}/admintechnicians">
 			        <img class="thumbnail-image" src="img/admin/technician.png" alt="Technicians" />
 			        <p class="caption mt-1">Technicians</p>
 			    </a>

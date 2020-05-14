@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2020 at 03:12 PM
+-- Generation Time: May 14, 2020 at 07:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -174,6 +174,26 @@ INSERT INTO `usergroups` (`id`, `userid`, `groupid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `userroles`
+--
+
+CREATE TABLE `userroles` (
+  `id` int(32) NOT NULL,
+  `userid` int(32) NOT NULL,
+  `userrole` int(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `userroles`
+--
+
+INSERT INTO `userroles` (`id`, `userid`, `userrole`) VALUES
+(1, 1, 4),
+(2, 2, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -185,7 +205,6 @@ CREATE TABLE `users` (
   `fullname` text NOT NULL,
   `lastlogindate` varchar(255) NOT NULL,
   `passwordsalt` varchar(255) NOT NULL,
-  `userrole` int(5) NOT NULL,
   `session` varchar(255) NOT NULL,
   `language` varchar(10) NOT NULL DEFAULT 'en',
   `requestsgroup` int(32) NOT NULL DEFAULT -1
@@ -195,8 +214,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `userrole`, `session`, `language`, `requestsgroup`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-12 16:43', '', 1, 'b06750e8e4d5b4eff81363a87e81985f106b4ec48220cd02c3ee69b9efb2b85', 'en', 2);
+INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `session`, `language`, `requestsgroup`) VALUES
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-14 15:24', '', '9b5e3f1dd1bb72ee3689ab9e3e4095c8718cc8408ed3eaa436136ef106998417', 'en', 2);
 
 --
 -- Indexes for dumped tables
@@ -260,6 +279,16 @@ ALTER TABLE `usergroups`
   ADD KEY `groupid` (`groupid`);
 
 --
+-- Indexes for table `userroles`
+--
+ALTER TABLE `userroles`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `userrole` (`userrole`),
+  ADD KEY `id_2` (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -306,6 +335,12 @@ ALTER TABLE `requeststypes`
 --
 ALTER TABLE `usergroups`
   MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `userroles`
+--
+ALTER TABLE `userroles`
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

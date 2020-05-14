@@ -55,7 +55,6 @@ public class AuthorizeUtil
             	user.SetLastLoginDate(rs.getString("lastlogindate"));
             	user.SetSession(rs.getString("session"));
             	user.SetLanguage(rs.getString("language"));
-            	user.SetUserRole(rs.getInt("userrole"));
             	user.SetLanguage(rs.getString("language"));
             	user.SetRequestsGroup(rs.getInt("requestsgroup"));
                 return user;
@@ -189,7 +188,6 @@ public class AuthorizeUtil
             	user.SetLanguage(rs.getString("language"));
             	user.SetSession(rs.getString("session"));
             	user.SetLanguage(rs.getString("language"));
-            	user.SetUserRole(rs.getInt("userrole"));
             	user.SetRequestsGroup(rs.getInt("requestsgroup"));
             } 
             
