@@ -14,14 +14,22 @@ Tasks which should be done:
 - [ ]     - Delete requests using checkbox and other request actions
 - [ ] Create basic Admin Settings pages
 - [x]     - Admin Home page
-- [ ]     - Admin Technicians page
+- [x]     - Admin Users page
+- [ ]             - Admin Users page Functionality
+- [x]     - Admin Technicians page
+- [ ]             - Admin Technicians page Functionality
 - [ ]     - Admin Groups page
-- [ ]     - Admin Users page
+- [ ]             - Admin Technicians page Functionality
 - [ ]     - Admin Request Types page
+- [ ]             - Admin Request Types page Functionality
 - [ ]     - Admin Request Priorities page
+- [ ]             - Admin Request Priorities page Functionality
 - [ ]     - Admin Request Statuses page
+- [ ]             - Admin Request Statuses page Functionality
 - [ ]     - Admin Email Settings page
+- [ ]             - Admin Email Settings page Functionality
 - [ ]     - Admin Request closure templates page
+- [ ]             - Admin Request closure templates page Functionality
 - [ ] Create Reports page for Reporting
 - [ ] Rethink user acesses
 - [ ] Refactor code, fix bugs
