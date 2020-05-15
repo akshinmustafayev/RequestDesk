@@ -14,7 +14,6 @@
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<!-- All CSS -->
 		<link rel="stylesheet" href="css/requestdesk.css">
-		<link rel="stylesheet" href="css/admintechnicians.css">
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/open-iconic-bootstrap.css">
@@ -24,7 +23,7 @@
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/requestdesk.js"></script>
-		<title>RequestDesk - Admin Technicians</title>
+		<title>RequestDesk - Admin Users</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
@@ -68,8 +67,8 @@
 						<div id="collapseDetails" class="collapse show border-bottom-0" aria-labelledby="adminDetails" data-parent="#accordion">
 							<div class="card-body p-0 m-0">
 								<div class="list-group pl-4">
-									<a href="${context}/adminusers" class="list-group-item list-group-item-action rounded-0 border-left-0 border-top-0 border-right-0">Users</a>
-									<a href="${context}/admintechnicians" class="list-group-item list-group-item-action rounded-0 border-left-0 border-right-0 active">Technicians</a>
+									<a href="${context}/adminusers" class="list-group-item list-group-item-action rounded-0 border-left-0 border-top-0 border-right-0 active">Users</a>
+									<a href="${context}/admintechnicians" class="list-group-item list-group-item-action rounded-0 border-left-0 border-right-0">Technicians</a>
 									<a href="${context}/admingroups" class="list-group-item list-group-item-action rounded-0 border-left-0 border-right-0 border-bottom-0">Groups</a>
 								</div>
 							</div>
@@ -110,7 +109,7 @@
 				</div>
 			</div>
 			<div class="col-8">
-				<h1 class="display-5 mr-4 mt-2 mb-4">Technicians</h1>
+				<h1 class="display-5 mr-4 mt-2 mb-4">Users</h1>
 				<div class="d-flex align-items-center mb-3">
 					<button type="button" class="btn btn-outline-primary mr-2">Add</button>
 					<button type="button" class="btn btn-outline-primary mr-2">Remove</button>
@@ -121,19 +120,21 @@
 						<tr>
 							<th scope="col"></th>
 							<th scope="col">Name</th>
+							<th scope="col">Login</th>
 							<th scope="col">Email</th>
-							<th scope="col">Role</th>
+							<th scope="col">Last login date</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:choose>
-							<c:when test = "${technicians.size() > 0}">
-								<c:forEach begin="0" items="${technicians}" var="technician">
-									<tr data-href="${context}/admintechnicianprofile?userid=${technician.GetId()}">
+							<c:when test = "${users.size() > 0}">
+								<c:forEach begin="0" items="${users}" var="user">
+									<tr data-href="${context}/adminuserprofile?userid=${user.GetId()}">
 										<td><input type="checkbox"></td>
-										<td>${technician.GetFullName()}</td>
-										<td>${technician.GetEmail()}</td>
-										<td>${technician.GetUserRoleName()}</td>
+										<td>${user.GetFullName()}</td>
+										<td>${user.GetLogin()}</td>
+										<td>${user.GetEmail()}</td>
+										<td>${user.GetLastLoginDate()}</td>
 									</tr>
 								</c:forEach>
 							</c:when>

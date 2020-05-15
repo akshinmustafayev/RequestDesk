@@ -23,6 +23,7 @@
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/requestdesk.js"></script>
 		<title>RequestDesk - Admin Home</title>
 	</head>
 	<body>
@@ -58,17 +59,17 @@
 		<h1 class="display-5 ml-4 mr-4 mt-2 mb-4">Details</h1>
 		<div class="row ml-4 mr-4 mt-2 mb-4">
             <div class="thumbnails">
+			    <a class="thumbnail" href="${context}/adminusers">
+			        <img class="thumbnail-image" src="img/admin/users.png" alt="Users" />
+			        <p class="caption mt-1">Users</p>
+			    </a>
 			    <a class="thumbnail" href="${context}/admintechnicians">
 			        <img class="thumbnail-image" src="img/admin/technician.png" alt="Technicians" />
 			        <p class="caption mt-1">Technicians</p>
 			    </a>
-			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/groups.svg" alt="Groups" />
+			    <a class="thumbnail" href="${context}/admingroups">
+			        <img class="thumbnail-image" src="img/admin/groups.png" alt="Groups" />
 			        <p class="caption mt-1">Groups</p>
-			    </a>
-			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/users.svg" alt="Users" />
-			        <p class="caption mt-1">Users</p>
 			    </a>
 			</div>
         </div>
@@ -76,15 +77,15 @@
 		<div class="row ml-4 mr-4 mt-2 mb-4">
             <div class="thumbnails">
 			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/requesttypes.svg" alt="Request types" />
+			        <img class="thumbnail-image" src="img/admin/requesttypes.png" alt="Request types" />
 			        <p class="caption mt-1">Request types</p>
 			    </a>
 			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/requestpriorities.svg" alt="Request priorities" />
+			        <img class="thumbnail-image" src="img/admin/requestpriorities.png" alt="Request priorities" />
 			        <p class="caption mt-1">Request priorities</p>
 			    </a>
 			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/requeststatuses.svg" alt="Request statuses" />
+			        <img class="thumbnail-image" src="img/admin/requeststatuses.png" alt="Request statuses" />
 			        <p class="caption mt-1">Request statuses</p>
 			    </a>
 			</div>
@@ -93,7 +94,7 @@
 		<div class="row ml-4 mr-4 mt-2 mb-4">
             <div class="thumbnails">
 			    <a class="thumbnail" href="#">
-			        <img class="thumbnail-image" src="img/admin/emailsettings.svg" alt="Email settings" />
+			        <img class="thumbnail-image" src="img/admin/emailsettings.png" alt="Email settings" />
 			        <p class="caption mt-1">Email settings</p>
 			    </a>
 			</div>

@@ -1,11 +1,3 @@
-[data-href] {
-    cursor: pointer;
-}
-
-[data-href]:hover {
-    background:#e2e3e5;
-}
-
 .go-to-label{
 	width:50px;
 }

@@ -17,3 +17,11 @@
     font-weight: 300;
     line-height: 1.2;
 }
+
+[data-href] {
+    cursor: pointer;
+}
+
+[data-href]:hover {
+    background:#e2e3e5;
+}

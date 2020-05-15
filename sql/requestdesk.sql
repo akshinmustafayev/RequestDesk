@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 07:28 PM
+-- Generation Time: May 15, 2020 at 12:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -189,7 +189,8 @@ CREATE TABLE `userroles` (
 
 INSERT INTO `userroles` (`id`, `userid`, `userrole`) VALUES
 (1, 1, 4),
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +216,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `email`, `fullname`, `lastlogindate`, `passwordsalt`, `session`, `language`, `requestsgroup`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-14 15:24', '', '9b5e3f1dd1bb72ee3689ab9e3e4095c8718cc8408ed3eaa436136ef106998417', 'en', 2);
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'adminadmin.com', 'Administrator', '2020-05-15 13:56', '', 'a4819adae4613a311d60cd89ed726aadf0bcf3a415d49e5fdf79239c970914f3', 'en', 2),
+(2, 'user', '4f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user@org.com', 'Name F. Surname', '2020-05-15 13:56', '', 'ccbda6c999317498c8913161a68b7e60a23dcf5a7d92310cf09286e40f31a8a9', 'en', 3);
 
 --
 -- Indexes for dumped tables
@@ -340,13 +342,13 @@ ALTER TABLE `usergroups`
 -- AUTO_INCREMENT for table `userroles`
 --
 ALTER TABLE `userroles`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

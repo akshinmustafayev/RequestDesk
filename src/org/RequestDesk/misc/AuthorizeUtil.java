@@ -4,11 +4,13 @@ import org.RequestDesk.beans.User;
 import org.RequestDesk.conn.ConnectionUtils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -201,4 +203,18 @@ public class AuthorizeUtil
 		
 		return user;
     }
+	
+	/**
+	Set cookie in UTF-8 format
+	@param	response	Default HttpServletResponse
+	@param	name	Cookie name
+	@param	value	Cookie value
+	@param	maxage	Cookie maximum age
+	*/
+	public static void SetUserCookie(HttpServletResponse response, String name, String value, int maxage) throws IOException 
+	{
+	    Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
+	    cookie.setMaxAge(maxage);
+	    response.addCookie(cookie);
+	}
 }

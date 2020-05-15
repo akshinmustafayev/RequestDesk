@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,19 +71,11 @@ public class LoginController extends HttpServlet
 		        session.setAttribute("language", user.GetLanguage());
 		        session.setAttribute("requestsgroup", (Integer) user.GetRequestsGroup());
 		        
-		        Cookie cookieLogin = new Cookie("login", user.GetLogin());
-		        Cookie cookieSession = new Cookie("session", user.GetSession());
-		        Cookie cookieFullName = new Cookie("fullname", user.GetFullName());
-		        Cookie cookieLanguage = new Cookie("language", user.GetLanguage());
-		        cookieLogin.setMaxAge(24 * 60 * 60);
-		        response.addCookie(cookieLogin);
-		        cookieSession.setMaxAge(24 * 60 * 60);
-		        response.addCookie(cookieSession);
-		        cookieFullName.setMaxAge(24 * 60 * 60);
-		        response.addCookie(cookieFullName);
-		        cookieLanguage.setMaxAge(24 * 60 * 60);
-		        response.addCookie(cookieLanguage);
-		        
+		        AuthorizeUtil.SetUserCookie(response, "login", user.GetLogin(), 24 * 60 * 60);
+		        AuthorizeUtil.SetUserCookie(response, "session", user.GetSession(), 24 * 60 * 60);
+		        AuthorizeUtil.SetUserCookie(response, "fullname", user.GetFullName(), 24 * 60 * 60);
+		        AuthorizeUtil.SetUserCookie(response, "language", user.GetLanguage(), 24 * 60 * 60);
+
 		        response.sendRedirect(request.getContextPath() + "/home");
 		    }
 		    else

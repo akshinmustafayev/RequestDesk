@@ -25,7 +25,7 @@ public class AdminTechniciansDao
             
             while (rs.next())
             {
-            	if(rs.getInt("id") != -1)
+            	if(rs.getInt("uid") != -1)
             	{
             		UserRole userRole = new UserRole();
             		userRole.SetId(rs.getInt("id"));
