@@ -1,7 +1,7 @@
 package org.RequestDesk.controller;
 
-import org.RequestDesk.beans.User;
-import org.RequestDesk.dao.AdminTechniciansDao;
+import org.RequestDesk.beans.Group;
+import org.RequestDesk.dao.AdminGroupsDao;
 import org.RequestDesk.misc.AuthorizeUtil;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminTechniciansController extends HttpServlet 
+public class AdminGroupsController extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -29,13 +29,13 @@ public class AdminTechniciansController extends HttpServlet
     		throws ServletException, IOException 
     {
     	AuthorizeUtil.FixUtf8(response);
-    	System.out.println("Enter doGet for Admin Technicians Controller");
+    	System.out.println("Enter doGet for Admin Groups Controller");
     	AuthorizeUtil.AuthorizedRedirect(request, response);
     	
-    	ArrayList<User> technicians = AdminTechniciansDao.GetTechnicians();
-    	request.setAttribute("technicians", technicians); 
+    	ArrayList<Group> groups = AdminGroupsDao.GetGroups();
+    	request.setAttribute("groups", groups); 
     	
-        RequestDispatcher rd = request.getRequestDispatcher("AdminTechnicians.jsp"); 
+        RequestDispatcher rd = request.getRequestDispatcher("AdminGroups.jsp"); 
         rd.include(request, response);
     }
 	
@@ -44,6 +44,6 @@ public class AdminTechniciansController extends HttpServlet
 			throws ServletException, IOException 
     {
     	AuthorizeUtil.FixUtf8(response);
-    	System.out.println("Enter doPost for Admin Technicians Controller");
+    	System.out.println("Enter doPost for Admin Groups Controller");
     }
 }
