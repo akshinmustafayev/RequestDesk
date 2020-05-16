@@ -6,7 +6,7 @@ Tasks which should be done:
 - [x] Create basic Login Page
 - [x] Create basic Home Page
 - [x] Create basic User Settings Page
-- [x] Create basic Show Request Page [postponed]
+- [x] Create basic Show Request Page [postponed] 
 - [ ]     - Request Actions such as Assign, Delete and etc
 - [ ]     - Refactor code with better SQL queries and Java code
 - [x] Create basic Requests Page - [currently in progress]
