@@ -18,7 +18,7 @@ Tasks which should be done:
 - [ ]             - Admin Users page Functionality
 - [x]     - Admin Technicians page
 - [ ]             - Admin Technicians page Functionality
-- [ ]     - Admin Groups page
+- [x]     - Admin Groups page
 - [ ]             - Admin Technicians page Functionality
 - [ ]     - Admin Request Types page
 - [ ]             - Admin Request Types page Functionality
